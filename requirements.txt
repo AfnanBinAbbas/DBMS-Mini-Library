@@ -1,0 +1,11 @@
+
+Flask==2.1.0
+psycopg2==2.9.1
+Flask-WTF==0.15.1
+Flask-Login==0.5.0
+python3
+
+
+You can add or remove dependencies as needed for your project.
+Once you have this file, you can install the dependencies by running 
+`pip install -r requirements.txt` in your project directory.
