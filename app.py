@@ -22,10 +22,11 @@ app.secret_key = 'abcd2123445'
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     message = ''
-    if request.method == 'POST' and 'email' in request.form and 'password' in request.form:
+    if request.method == 'POST' and 'email' in request.form and 'password' in request.form and 'role' in request.form:
         email = request.form['email']
         password = request.form['password']
-        cur.execute('SELECT * FROM "user" WHERE email = %s AND password = %s', (email, password,))
+        role = request.form['role']
+        cur.execute('SELECT * FROM "user" WHERE email = %s AND password = %s AND role = user', (email, password,role,))
         user = cur.fetchone()
         if user:
             session['loggedin'] = True
