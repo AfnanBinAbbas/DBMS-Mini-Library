@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System - Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('dashboard1.jpg'); /* Add your image URL here */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            padding: 15px 30px;
+            background-color: #942c2c;
+            color: #fff;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 200px;
+        }
+
+        .button:hover {
+            background-color: #dc4242;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dashboard Portal</h1>
+        <div class="button-container">
+            <a href="addpage.html" class="button">Add Books</a>
+            <a href="issuebook.html" class="button">Issue Books</a>
+            <a href="editbooks.html" class="button">Edit Books</a>
+            <button class="button">Return Books</button>
+            <button class="button">Delete Books</button>
+            <a href="bookinfo.html" class="button">Show Books</a>
+            <a href="searchbooks.html" class="button">Search Books</a>
+            <button class="button">Log Out</button>
+        </div>
+    </div>
+</body>
+</html>
