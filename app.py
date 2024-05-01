@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import psycopg2
 import re
 import psycopg2.extras
-
 # Connect to PostgreSQL database
 conn = psycopg2.connect(
     host="localhost",
@@ -15,25 +14,47 @@ conn = psycopg2.connect(
 cur = conn.cursor()
 
 # Create Flask app
-app = Flask(__name__)
+app = Flask(__name__,template_folder='pages')
 app.secret_key = 'abcd2123445'
 
 @app.route('/')
-@app.route('/login', methods=['GET', 'POST'])
-def login():
+#JUST CHECKING
+@app.route('/home', methods=['GET', 'POST'])
+def index():
     message = ''
-    if request.method == 'POST' and 'email' in request.form and 'password' in request.form and 'role' in request.form:
+    if request.method == 'POST' and 'email' in request.form and 'password' in request.form:
         email = request.form['email']
         password = request.form['password']
-        role = request.form['role']
-        cur.execute('SELECT * FROM "user" WHERE email = %s AND password = %s AND role = user', (email, password,role,))
+        # role = request.form['role']
+        cur.execute('SELECT * FROM "user" WHERE email = %s AND password = %s', (email, password,))
         user = cur.fetchone()
         if user:
             session['loggedin'] = True
             session['userid'] = user[0]  # Assuming user id is the first column
             session['name'] = user[1]  # Assuming name is the second column
             session['email'] = user[2]  # Assuming email is the third column
-            session['role'] = user[5]  # Assuming role is the sixth column
+            session['role'] = user[4]  # Assuming role is the sixth column
+            message = 'Logged in successfully!'
+            return redirect(url_for('home'))
+        else:
+            message = 'Please enter correct email/password!'
+    return render_template('home.html', message=message)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    message = ''
+    if request.method == 'POST' and 'email' in request.form and 'password' in request.form:
+        email = request.form['email']
+        password = request.form['password']
+        # role = request.form['role']
+        cur.execute('SELECT * FROM "user" WHERE email = %s AND password = %s', (email, password,))
+        user = cur.fetchone()
+        if user:
+            session['loggedin'] = True
+            session['userid'] = user[0]  # Assuming user id is the first column
+            session['name'] = user[1]  # Assuming name is the second column
+            session['email'] = user[2]  # Assuming email is the third column
+            session['role'] = user[4]  # Assuming role is the sixth column
             message = 'Logged in successfully!'
             return redirect(url_for('dashboard'))
         else:
@@ -41,13 +62,13 @@ def login():
     return render_template('login.html', message=message)
 
 
-@app.route("/dashboard", methods =['GET', 'POST'])
+@app.route("/dashboard", methods=['GET', 'POST'])
 def dashboard():
     if 'loggedin' in session:        
         return render_template("dashboard.html")
     return redirect(url_for('login'))    
     
-@app.route("/users", methods =['GET', 'POST'])
+@app.route("/users", methods=['GET', 'POST'])
 def users():
     if 'loggedin' in session:
         # Connect to the PostgreSQL database
@@ -57,7 +78,7 @@ def users():
         user="postgres",
         password="pgadmin4",
         port=5432
-    )
+        )
         # Create a cursor from the connection
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         # Execute the SQL query to fetch users
@@ -79,6 +100,14 @@ def users():
         users = cursor.fetchall()    
         return render_template("users.html", users = users)
     return redirect(url_for('login'))
+
+# def users():
+#     if 'loggedin' in session:
+#         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+#         cursor.execute('SELECT * FROM user')
+#         users = cursor.fetchall()    
+#         return render_template("users.html", users = users)
+#     return redirect(url_for('login'))
 
 @app.route("/save_user", methods =['GET', 'POST'])
 def save_user():
