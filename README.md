@@ -33,8 +33,8 @@ The Library Management System is a web application designed to help libraries ma
 <!-- TBU -->
 
 ## Contributors
-https://github.com/AfnanBinAbbas
-https://github.com/Ray-ex
+https://github.com/AfnanBinAbbas,
+https://github.com/Ray-ex,
 https://github.com/naqirraza99
 
 ## License
