@@ -8,6 +8,10 @@
   scroll-behavior: smooth;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 .container {
   padding: 56px 0;
 }
@@ -72,6 +76,28 @@ button:active {
   box-shadow: 8px 8px 6px rgba(0, 0, 0, 0.287);
 }
 
+.btn2 {
+  background-color: #aa3434;
+  color: #fff;
+  font-size: 1vw;
+  font-weight: 500;
+  padding: 0.5vw 1.5vw;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.287);
+}
+
+.btn3 {
+  background-color: #fff;
+  color: #aa3434;
+  font-size: 0.8vw;
+  font-weight: 500;
+  padding: 0.5vw 1.0vw;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.287);
+}
+
 .click {
   transform: scale(1);
   transition: all 300ms ease;
@@ -132,6 +158,7 @@ button:active {
     opacity: 0;
     transform: translateY(40px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -165,7 +192,7 @@ nav {
 }
 
 .nav__links {
-  gap: 1.5vw;
+  gap: 1.2vw;
 }
 
 .nav__link--icon {
@@ -677,6 +704,7 @@ footer {
 .footer__logo--wrapper:hover {
   filter: brightness(50%);
 }
+
 .footer__logo--img {
   width: 100%;
   filter: brightness(0%) invert(1);

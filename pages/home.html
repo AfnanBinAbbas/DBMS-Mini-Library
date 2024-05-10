@@ -8,9 +8,9 @@
   <title>Library</title>
   <link rel="stylesheet" href="/static/style/styles.css">
   <!-- <link rel="stylesheet" href="styles.css" /> -->
-  <link rel="stylesheet" href="fontawesome-6/css/all.css" />
+  <link rel="stylesheet" href="/pages/fontawesome-6/css/all.css">
   <script src="{{ url_for('static',filename='app.js') }}"></script>
-
+  <script src="https://kit.fontawesome.com/78449d34a0.js" crossorigin="anonymous"></script>
   <!-- <script src="app.js"></script> -->
 </head>
 
@@ -40,7 +40,13 @@
             <a class="nav__link--icon link__hover--effect link__hover--effect--red click" href=""><i
                 class="fa-solid fa-cart-shopping"></i></a>
           </li>
+          <li>
+            <a href="/login">
+              <button class="btn2">Login</button>
+            </a>
+          </li>
         </ul>
+
         <button class="btn__menu" onclick="toggleModal()">
           <i class="fa-solid fa-bars"></i>
         </button>

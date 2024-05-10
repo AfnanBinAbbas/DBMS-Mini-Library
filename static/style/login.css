@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('lib.jpg');
+    /* background-image: url('lib.jpg'); */
     /* Add your image URL here */
     background-size: cover;
     background-position: center;
@@ -14,8 +14,9 @@ body {
     background-color: rgba(255, 255, 255, 0.8);
     /* Semi-transparent white background */
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 4px;
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1), -5px 0 10px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -56,21 +57,26 @@ h3 {
 
 .btn-group button,
 .btn-group a {
-    padding: 10px 20px; /* Same padding for both buttons */
+    padding: 10px 20px;
+    /* Same padding for both buttons */
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px; /* Set the font size */
+    font-size: 16px;
+    /* Set the font size */
 }
 
 .btn-group button {
-    background-color: #ff6347; /* Changed login button color */
+    background-color: #eb6149;
+    /* Changed login button color */
     color: #fff;
-    margin-right: 10px;
+    margin-right: 10pxrgb(255, 95, 67);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.287);
 }
 
 .btn-group a {
-    background-color: #4682b4; /* Changed sign up button color */
+    background-color: #4682b4;
+    /* Changed sign up button color */
     color: #fff;
     text-decoration: none;
 }
