@@ -17,28 +17,10 @@ cur = conn.cursor()
 app = Flask(__name__,template_folder='pages')
 app.secret_key = 'abcd2123445'
 
+#Landing_Page
 @app.route('/')
-#JUST CHECKING
-@app.route('/home', methods=['GET', 'POST'])
-def index():
-    message = ''
-    if request.method == 'POST' and 'email' in request.form and 'password' in request.form:
-        email = request.form['email']
-        password = request.form['password']
-        # role = request.form['role']
-        cur.execute('SELECT * FROM "user" WHERE email = %s AND password = %s', (email, password,))
-        user = cur.fetchone()
-        if user:
-            session['loggedin'] = True
-            session['userid'] = user[0]  # Assuming user id is the first column
-            session['name'] = user[1]  # Assuming name is the second column
-            session['email'] = user[2]  # Assuming email is the third column
-            session['role'] = user[4]  # Assuming role is the sixth column
-            message = 'Logged in successfully!'
-            return redirect(url_for('home'))
-        else:
-            message = 'Please enter correct email/password!'
-    return render_template('home.html', message=message)
+def home():
+    return render_template('home.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
