@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Books</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('login1.jpg'); /* Add your image URL here */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #942c2c;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .search-section {
+            margin-bottom: 30px;
+        }
+
+        .search-form {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-form input[type="text"] {
+            width: 70%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-button {
+            padding: 8px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Search Books</h1>
+        
+        <!-- Search Section -->
+        <div class="search-section">
+            <div class="search-form">
+                <input type="text" id="searchInput" placeholder="Enter Book ID">
+                <button class="search-button" onclick="searchBooks()">Search</button>
+            </div>
+        </div>
+
+        <!-- Available Books Section (Initially Hidden) -->
+        <div id="availableBooksSection" style="display: none;">
+            <h2>Available Books
+            </h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book ID</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Edition</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="booksTableBody">
+                    <!-- Book information will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+       function searchBooks() {
+    var searchInput = document.getElementById("searchInput").value;
+    // Perform search operation here based on searchInput
+    // For demonstration, let's assume we have fetched book information
+    var bookInfo = [
+        { id: 1001, title: "How to Win Friends and Influence People", author: "Dale Carnegie", edition: 1, price: 600 },
+        { id: 1002, title: "Atomic Habits", author: "James Clear", edition: 2018, price: 600 },
+        { id: 1003, title: "The Politics of Nuclear Weapons", author: "Andrew Futter", edition: 2015, price: 800 },
+        { id: 1004, title: "When Peace Kills Politics", author: "Sharath Srinivasan", edition: 2016, price: 800 },
+        { id: 1005, title: "The Wolf of Wall Street", author: "Jordan Belfort", edition: 2014, price: 600 },
+        { id: 1006, title: "Islam and Modernity", author: "Muhammad Khalid Masud", edition: 2011, price: 700 },
+        { id: 1007, title: "The Art of Reading Minds", author: "Henrik Fexeus", edition: 2013, price: 600 },
+        { id: 1008, title: "Inside the Army of Terror", author: "Michael Weiss", edition: 2012, price: 600 },
+        { id: 1009, title: "A Game of Thrones", author: "George R. Martin", edition: 2009, price: 1000 },
+        { id: 1010, title: "Empathy Economics", author: "Owen Ullmann", edition: 2010, price: 1000 },
+        // Add more book information objects as needed
+    ];
+
+    // Filter bookInfo array based on searchInput
+    var filteredBooks = bookInfo.filter(function(book) {
+        return book.id == searchInput;
+    });
+
+    // Display available books section
+    document.getElementById("availableBooksSection").style.display = "block";
+
+    // Populate the table with book information
+    var tableBody = document.getElementById("booksTableBody");
+    tableBody.innerHTML = ""; // Clear existing table rows
+
+    filteredBooks.forEach(function(book) {
+        var row = "<tr>" +
+            "<td>" + book.id + "</td>" +
+            "<td>" + book.title + "</td>" +
+            "<td>" + book.author + "</td>" +
+            "<td>" + book.edition + "</td>" +
+            "<td>" + book.price + "</td>" +
+            "</tr>";
+        tableBody.innerHTML += row;
+    });
+}
+
+    </script>
+</body>
+</html>
