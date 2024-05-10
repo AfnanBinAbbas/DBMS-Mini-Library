@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=3.0">
+    <title>Edit Book Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('login1.jpg'); /* Add your image URL here */
+            background-size: cover;
+            background-position: center;
+        }
+        
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #942c2c;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 24px;
+            color: #1b0404;
+        }
+
+        .form-group input {
+            width: 96%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Book Details</h1>
+        <div id="searchSection">
+            <div class="form-group">
+                <label for="bookId">Book ID:</label>
+                <input type="text" id="bookId" name="bookId" required>
+            </div>
+            <button class="button" onclick="searchBook()">Search</button>
+        </div>
+
+        <div id="editSection" style="display: none;">
+            <form action="#" method="post" id="editBookForm">
+                <div class="form-group">
+                    <label for="bookIdEdit">Book ID:</label>
+                    <input type="text" id="bookIdEdit" name="bookIdEdit" required>
+                </div>
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author" required>
+                </div>
+                <div class="form-group">
+                    <label for="genre">Genre:</label>
+                    <input type="text" id="genre" name="genre" required>
+                </div>
+                <div class="form-group">
+                    <label for="edition">Edition:</label>
+                    <input type="text" id="edition" name="edition" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="text" id="price" name="price" required>
+                </div>
+                <button class="button" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function searchBook() {
+            var bookId = document.getElementById("bookId").value;
+            // Perform search operation here
+            // For demonstration, let's assume book details are fetched and displayed
+            document.getElementById("searchSection").style.display = "none";
+            document.getElementById("editSection").style.display = "block";
+        }
+    </script>
+</body>
+</html>
