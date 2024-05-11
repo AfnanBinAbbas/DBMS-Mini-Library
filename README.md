@@ -10,8 +10,9 @@ This repository contains a Database Management System (DBMS) project for a Libra
 5. **Edit Books**: Librarians can edit the details of existing books.
 6. **Return Books**: Library members can return borrowed books.
 7. **Delete Books**: Librarians can remove books from the library database.
-8. **Show Books**: Users can view the list of available books in the library.
-9. **Change Password**: Users can change their login password for security purposes.
+8. **Search Books**: Librarians can search  the specific book from a list of available books in the library.
+9. **Show Books**: Users can view the list of available books in the library.
+10. **Change Password**: Users can change their login password for security purposes.
 
 ### Usage:
 1. **Setup**: Clone the repository and set up the required database.
@@ -75,6 +76,9 @@ For detailed instructions on setting up and using the Library Management System,
 
 ### Delete Books:
 ![Delete book](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/10951028-e3d9-4a93-aeb6-c42d4b728453)
+
+### Search Books:
+![search](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/289880bf-45ca-497e-aaa8-2290cc2404b8)
 
 ### Show Books:
 ![show books](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/85950719-5377-4a71-91fb-8944d288258a)
