@@ -322,7 +322,6 @@ def save_book():
 @app.route("/delete_book", methods=['GET'])
 def delete_book():
     if 'loggedin' in session:
-        # Connect to the PostgreSQL database
         conn = psycopg2.connect(
             host="localhost",
             dbname="lms",
