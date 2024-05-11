@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('login1.jpg'); /* Add your image URL here */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #942c2c;
+            font-size: 40px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: rgba(242, 242, 243, 0.8); /* Semi-transparent white background */
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-size: 30px;
+            color: #333;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 24px;
+            color: #942c2c;
+        }
+
+        .form-group input {
+            width: 98%;
+            padding: 8px;
+            border: 1px solid #130a0a;
+            border-radius: 5px;
+            height: 30px;
+        }
+
+       
+        .btn-group {
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .btn-group button, .btn-group a {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 22px;
+        }
+
+        .btn-group button {
+            background-color: #4682b4; /* Changed login button color */
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .btn-group a {
+            background-color: #ff6347; /* Changed sign up button color */
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Return Book</h1>
+        
+        <!-- Student Details Section -->
+        <div class="section">
+            <div class="section-title">Student Details</div>
+            <form action="#" method="post" id="studentDetailsForm">
+                <div class="form-group">
+                    <label for="studentName">Student Name:</label>
+                    <input type="text" id="studentName" name="studentName" required>
+                </div>
+                <div class="form-group">
+                    <label for="faculty">Faculty:</label>
+                    <input type="text" id="faculty" name="faculty" required>
+                </div>
+                <div class="form-group">
+                    <label for="registrationNumber">Registration Number:</label>
+                    <input type="text" id="registrationNumber" name="registrationNumber" required>
+                </div>
+              
+        
+                <div class="form-group">
+                    <label for="contactNumber">Contact Number:</label>
+                    <input type="text" id="contactNumber" name="contactNumber" required>
+                </div>
+            </form>
+        </div>
+
+        <!-- Book Details Section -->
+        <div class="section">
+            <div class="section-title">Book Details</div>
+            <form action="#" method="post" id="bookDetailsForm">
+                <div class="form-group">
+                    <label for="bookTitle">Book Title:</label>
+                    <input type="text" id="bookTitle" name="bookTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookId">Book ID:</label>
+                    <input type="text" id="bookId" name="bookId" required>
+                </div>
+                <div class="form-group">
+                    <label for="genre">Genre:</label>
+                    <input type="text" id="genre" name="genre" required>
+                </div>    
+                <div class="form-group">
+                    <label for="issueDate">Return Date:</label>
+                    <input type="date" id="returnDate" name="returnDate" required>
+                </div>
+               
+                <div class="form-group">
+                    <label for="edition">Edition:</label>
+                    <input type="text" id="edition" name="edition" required>
+                </div>
+            </form>
+        </div>
+
+        <!-- Submit Button -->
+        
+        <div class="btn-group">
+            <button class="button" onclick="returnBook()">Return Book</button>
+            <a href="dashboard.html">Back</a>
+            
+            
+          
+        </div>
+    </div>
+
+    <script>
+        function returnBook() {
+            // Code to handle issuing book goes here
+            // For demonstration purposes, you can alert success
+            alert("Book returned successfully");
+        }
+    </script>
+</body>
+</html>
