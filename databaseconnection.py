@@ -107,3 +107,39 @@ def migrate_data():
 
 # Execute data migration
 migrate_data()
+
+def migrate_categories():
+    try:
+        # Connect to PostgreSQL
+        conn = psycopg2.connect(**pg_connection_params)
+        cursor = conn.cursor()
+
+        # Fetch data from PostgreSQL table
+        cursor.execute("SELECT * FROM category")
+        records = cursor.fetchall()
+
+        # Firestore collection reference for categories
+        collection_ref = db.collection('categories')
+
+        # Upload data to Firestore
+        for record in records:
+            data = {
+                'categoryid': record[0],
+                'name': record[1],
+                'status': record[2]
+            }
+            # Add document to Firestore collection
+            collection_ref.add(data)
+
+        print("Category migration completed successfully.")
+
+    except Exception as e:
+        print("Error:", e)
+
+    finally:
+        # Close PostgreSQL connection
+        cursor.close()
+        conn.close()
+
+# Execute category migration
+migrate_categories()
