@@ -778,7 +778,6 @@ def editRack():
 @app.route("/delete_rack", methods =['GET'])
 def delete_rack():
     if 'loggedin' in session:
-        # Connect to the PostgreSQL database
         conn = psycopg2.connect(
             host="localhost",
             dbname="lms",
