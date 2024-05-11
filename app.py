@@ -730,7 +730,6 @@ def rack():
 @app.route("/saveRack", methods=['GET', 'POST'])
 def saveRack():
     if 'loggedin' in session:
-        # Connect to the PostgreSQL database
         conn = psycopg2.connect(
             host="localhost",
             dbname="lms",
