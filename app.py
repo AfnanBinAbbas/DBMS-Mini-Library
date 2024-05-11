@@ -444,7 +444,6 @@ def delete_issue_book():
         return redirect(url_for('list_issue_book'))
     return redirect(url_for('login'))
 
-# Manage Category   
 @app.route("/category", methods =['GET', 'POST'])
 def category():
     if 'loggedin' in session:
