@@ -677,7 +677,6 @@ def savePublisher():
 @app.route("/editPublisher", methods =['GET', 'POST'])
 def editPublisher():
     if 'loggedin' in session:
-        # Connect to the PostgreSQL database
         conn = psycopg2.connect(
             host="localhost",
             dbname="lms",
