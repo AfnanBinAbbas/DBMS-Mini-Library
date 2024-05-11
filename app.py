@@ -83,8 +83,6 @@ def users(): #user function
 #         cursor.execute('SELECT * FROM user')
 #         users = cursor.fetchall()    
 #         return render_template("users.html", users=users)
-#     return redirect(url_for('login'))
-
 @app.route("/save_user", methods =['GET', 'POST'])
 def save_user(): #save user function
     msg = ''    
