@@ -52,6 +52,10 @@ For detailed instructions on setting up and using the Library Management System,
 ### Frontend of Library Management System:
 ### Landing Page:
 
+### Home Page:
+![WhatsApp Image 2024-05-11 at 20 55 54_f6f40a99](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/898bd19e-6695-437d-aa7e-1296dc7972fa)
+
+
 ### Login Page:
 ![login page](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/39067311-0a45-4dd8-a00f-5c7bf72c0b38)
 
