@@ -105,11 +105,11 @@ def save_user():
             if action == 'updateUser':
                 userId = request.form['userid']                 
                 cursor.execute('UPDATE user SET first_name= %s, last_name= %s, email= %s, role= %s WHERE id = %s', (first_name, last_name, email, role, (userId, ), ))
-                psycopg2.connection.commit()   
+                conn.commit()        
             else:
                 password = request.form['password'] 
                 cursor.execute('INSERT INTO user (`first_name`, `last_name`, `email`, `password`, `role`) VALUES (%s, %s, %s, %s, %s)', (first_name, last_name, email, password, role))
-                psycopg2.connection.commit()   
+                conn.commit()          
 
             return redirect(url_for('users'))        
         elif request.method == 'POST':
@@ -123,7 +123,7 @@ def edit_user():
     if 'loggedin' in session:
         editUserId = request.args.get('userid')
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cursor.execute('SELECT * FROM user WHERE id = % s', (editUserId, ))
+        cursor.execute('SELECT * FROM user WHERE id = %s', (editUserId, ))
         users = cursor.fetchall()         
 
         return render_template("edit_user.html", users = users)
@@ -135,7 +135,7 @@ def view_user():
     if 'loggedin' in session:
         viewUserId = request.args.get('userid')   
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cursor.execute('SELECT * FROM user WHERE id = % s', (viewUserId, ))
+        cursor.execute('SELECT * FROM user WHERE id = %s', (viewUserId, ))
         user = cursor.fetchone()   
         return render_template("view_user.html", user = user)
     return redirect(url_for('login'))
@@ -155,8 +155,8 @@ def password_change():
                 mesage = 'Confirm password is not equal!'
             else:
                 cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-                cursor.execute('UPDATE user SET  password =% s WHERE id =% s', (password, (userId, ), ))
-                psycopg2.connection.commit()
+                cursor.execute('UPDATE user SET  password =%s WHERE id =%s', (password, (userId, ), ))
+                conn.commit()        
                 mesage = 'Password updated !'            
         elif request.method == 'POST':
             mesage = 'Please fill out the form !'        
@@ -286,9 +286,9 @@ def edit_book():
 
     return redirect(url_for('login'))
 
-@app.route("/save_book", methods =['GET', 'POST'])
+@app.route("/save_book", methods=['GET', 'POST'])
 def save_book():
-    msg = ''    
+    msg = ''
     if 'loggedin' in session:
         # Connect to the PostgreSQL database
         conn = psycopg2.connect(
@@ -303,7 +303,8 @@ def save_book():
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         cursor.execute("SELECT book.bookid, book.picture, book.name, book.status, book.isbn, book.no_of_copy, book.updated_on, author.name as author_name, category.name AS category_name, rack.name As rack_name, publisher.name AS publisher_name FROM book LEFT JOIN author ON author.authorid = book.authorid LEFT JOIN category ON category.categoryid = book.categoryid LEFT JOIN rack ON rack.rackid = book.rackid LEFT JOIN publisher ON publisher.publisherid = book.publisherid")
         books = cursor.fetchall() 
-        if request.method == 'POST' and 'name' in request.form and 'author' in request.form and 'publisher' in request.form and 'category' in request.form and 'rack' in request.form :
+        
+        if request.method == 'POST' and 'name' in request.form and 'author' in request.form and 'publisher' in request.form and 'category' in request.form and 'rack' in request.form:
             bookName = request.form['name'] 
             isbn = request.form['isbn']  
             no_of_copy = request.form['no_of_copy'] 
@@ -316,19 +317,18 @@ def save_book():
             
             if action == 'updateBook':
                 bookId = request.form['bookid']
-                cursor.execute('UPDATE book SET name= %s, status= %s, isbn= %s, no_of_copy= %s, categoryid= %s, authorid=%s, rackid= %s, publisherid= %s WHERE bookid = %s', (bookName, status, isbn, no_of_copy, category, author, rack, publisher, (bookId, ), ))
-                psycopg2.connection.commit()   
+                cursor.execute('UPDATE book SET name = %s, status = %s, isbn = %s, no_of_copy = %s, categoryid = %s, authorid = %s, rackid = %s, publisherid = %s WHERE bookid = %s', (bookName, status, isbn, no_of_copy, category, author, rack, publisher, bookId))
+                conn.commit()        
             else:
-                cursor.execute('INSERT INTO book (`name`, `status`, `isbn`, `no_of_copy`, `categoryid`, `authorid`, `rackid`, `publisherid`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (bookName, status, isbn, no_of_copy, category
-    , author, rack, publisher))
-                psycopg2.connection.commit()           
+                cursor.execute('INSERT INTO book (name, status, isbn, no_of_copy, categoryid, authorid, rackid, publisherid) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (bookName, status, isbn, no_of_copy, category, author, rack, publisher))
+                conn.commit()                  
             return redirect(url_for('books'))        
         elif request.method == 'POST':
             msg = 'Please fill out the form !'        
-        return render_template("books.html", msg = msg, books = books)
+        return render_template("books.html", msg=msg, books=books)
     return redirect(url_for('login'))
     
-@app.route("/delete_book", methods =['GET'])
+@app.route("/delete_book", methods=['GET'])
 def delete_book():
     if 'loggedin' in session:
         # Connect to the PostgreSQL database
@@ -341,10 +341,11 @@ def delete_book():
         )
         deleteBookId = request.args.get('bookid')
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cursor.execute('DELETE FROM book WHERE bookid = % s', (deleteBookId, ))
-        psycopg2.connection.commit()   
+        cursor.execute('DELETE FROM book WHERE bookid = %s', (deleteBookId,))
+        conn.commit()        
         return redirect(url_for('books'))
-    return redirect(url_for('login'))    
+    return redirect(url_for('login'))
+ 
     
 # Manage issue book   
 @app.route("/list_issue_book", methods =['GET', 'POST'])
@@ -490,11 +491,11 @@ def saveCategory():
             
             if action == 'updateCategory':
                 categoryId = request.form['categoryid'] 
-                cursor.execute('UPDATE category SET name = %s, status = %s WHERE categoryid =% s', (name, status, (categoryId, ), ))
-                psycopg2.connection.commit()        
+                cursor.execute('UPDATE category SET name = %s, status = %s WHERE categoryid =%s', (name, status, (categoryId, ), ))
+                conn.commit()              
             else: 
                 cursor.execute('INSERT INTO category (`name`, `status`) VALUES (%s, %s)', (name, status))
-                psycopg2.connection.commit()        
+                conn.commit()               
             return redirect(url_for('category'))        
         elif request.method == 'POST':
             msg = 'Please fill out the form !'        
@@ -533,8 +534,8 @@ def delete_category():
         )
         categoryid = request.args.get('categoryid') 
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cursor.execute('DELETE FROM category WHERE categoryid = % s', (categoryid, ))
-        psycopg2.connection.commit()   
+        cursor.execute('DELETE FROM category WHERE categoryid = %s', (categoryid, ))
+        conn.commit()           
         return redirect(url_for('category'))
     return redirect(url_for('login'))
 
@@ -607,7 +608,7 @@ def editAuthor():
         return render_template("edit_author.html", authors = authors)
     return redirect(url_for('login'))  
 
-@app.route("/delete_author", methods =['GET'])
+@app.route("/delete_author", methods=['GET'])
 def delete_author():
     if 'loggedin' in session:
         # Connect to the PostgreSQL database
@@ -620,10 +621,11 @@ def delete_author():
         )
         authorid = request.args.get('authorid') 
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cursor.execute('DELETE FROM author WHERE authorid = % s', (authorid, ))
-        psycopg2.connection.commit()   
+        cursor.execute('DELETE FROM author WHERE authorid = %s', (authorid,))
+        conn.commit()   
         return redirect(url_for('author'))
     return redirect(url_for('login'))
+
 
 # Manage publishers   
 @app.route("/publisher", methods =['GET', 'POST'])
@@ -643,7 +645,7 @@ def publisher():
         return render_template("publisher.html", publishers = publishers)
     return redirect(url_for('login')) 
 
-@app.route("/savePublisher", methods =['GET', 'POST'])
+@app.route("/savePublisher", methods=['GET', 'POST'])
 def savePublisher():
     if 'loggedin' in session:
         # Connect to the PostgreSQL database
@@ -659,21 +661,27 @@ def savePublisher():
         if request.method == 'POST' and 'name' in request.form and 'status' in request.form:
             name = request.form['name'] 
             status = request.form['status']             
-            action = request.form['action']             
+            action = request.form['action']  
             
-            if action == 'updatePublisher':
+            # Check if publisherid is present and not empty
+            if 'publisherid' in request.form and request.form['publisherid']:
                 publisherid = request.form['publisherid'] 
-                cursor.execute('UPDATE publisher SET name = %s, status = %s WHERE publisherid =% s', (name, status, (publisherid, ), ))
-                psycopg2.connection.commit()        
+            else:
+                publisherid = None  # Set publisherid to None if it's not present or empty
+                
+            if action == 'updatePublisher' and publisherid:
+                cursor.execute('UPDATE publisher SET name = %s, status = %s WHERE publisherid = %s', (name, status, publisherid))
+                conn.commit()        
             else: 
-                cursor.execute('INSERT INTO publisher (`name`, `status`) VALUES (%s, %s)', (name, status))
-                psycopg2.connection.commit()        
+                cursor.execute('INSERT INTO publisher (name, status) VALUES (%s, %s)', (name, status))
+                conn.commit()                
             return redirect(url_for('publisher'))        
         elif request.method == 'POST':
             msg = 'Please fill out the form !'        
         return redirect(url_for('publisher'))
     
     return redirect(url_for('login'))
+
     
 @app.route("/editPublisher", methods =['GET', 'POST'])
 def editPublisher():
@@ -706,8 +714,8 @@ def delete_publisher():
         )
         publisherid = request.args.get('publisherid') 
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cursor.execute('DELETE FROM publisher WHERE publisherid = % s', (publisherid, ))
-        psycopg2.connection.commit()   
+        cursor.execute('DELETE FROM publisher WHERE publisherid = %s', (publisherid, ))
+        conn.commit()        
         return redirect(url_for('publisher'))
     return redirect(url_for('login'))
  
@@ -729,7 +737,7 @@ def rack():
         return render_template("rack.html", racks = racks)
     return redirect(url_for('login')) 
 
-@app.route("/saveRack", methods =['GET', 'POST'])
+@app.route("/saveRack", methods=['GET', 'POST'])
 def saveRack():
     if 'loggedin' in session:
         # Connect to the PostgreSQL database
@@ -749,11 +757,11 @@ def saveRack():
             
             if action == 'updateRack':
                 rackid = request.form['rackid'] 
-                cursor.execute('UPDATE rack SET name = %s, status = %s WHERE rackid =% s', (name, status, (rackid, ), ))
-                psycopg2.connection.commit()        
+                cursor.execute('UPDATE rack SET name = %s, status = %s WHERE rackid = %s', (name, status, rackid))
+                conn.commit()               
             else: 
-                cursor.execute('INSERT INTO rack (`name`, `status`) VALUES (%s, %s)', (name, status))
-                psycopg2.connection.commit()        
+                cursor.execute('INSERT INTO rack (name, status) VALUES (%s, %s)', (name, status))
+                conn.commit()               
             return redirect(url_for('rack'))        
         elif request.method == 'POST':
             msg = 'Please fill out the form !'        
@@ -792,8 +800,8 @@ def delete_rack():
         )
         rackid = request.args.get('rackid') 
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cursor.execute('DELETE FROM rack WHERE rackid = % s', (rackid, ))
-        psycopg2.connection.commit()   
+        cursor.execute('DELETE FROM rack WHERE rackid = %s', (rackid, ))
+        conn.commit()          
         return redirect(url_for('rack'))
     return redirect(url_for('login'))
     
