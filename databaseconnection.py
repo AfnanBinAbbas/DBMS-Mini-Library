@@ -266,3 +266,42 @@ def migrate_racks():
 
 # Execute rack migration
 migrate_racks()
+
+def migrate_users():
+    try:
+        # Connect to PostgreSQL
+        conn = psycopg2.connect(**pg_connection_params)
+        cursor = conn.cursor()
+
+        # Fetch data from PostgreSQL table
+        cursor.execute("SELECT * FROM \"user\"")
+        records = cursor.fetchall()
+
+        # Firestore collection reference for users
+        collection_ref = db.collection('users')
+
+        # Upload data to Firestore
+        for record in records:
+            data = {
+                'id': record[0],
+                'first_name': record[1],
+                'last_name': record[2],
+                'email': record[3],
+                'password': record[4],
+                'role': record[5]
+            }
+            # Add document to Firestore collection
+            collection_ref.add(data)
+
+        print("User migration completed successfully.")
+
+    except Exception as e:
+        print("Error:", e)
+
+    finally:
+        # Close PostgreSQL connection
+        cursor.close()
+        conn.close()
+
+# Execute user migration
+migrate_users()
