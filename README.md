@@ -61,6 +61,10 @@ For detailed instructions on setting up and using the Library Management System,
 ### Featured Books:
 ![WhatsApp Image 2024-05-11 at 21 18 47_67479d82](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/5be37297-64d9-4540-9875-8473d8e080b5)
 
+### Browse Books:
+![WhatsApp Image 2024-05-11 at 21 23 41_9ac3a989](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/fd8de4c8-b5e1-422a-ad7e-ae5897f22b7e)
+
+
 ### Login Page:
 ![login page](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/39067311-0a45-4dd8-a00f-5c7bf72c0b38)
 
