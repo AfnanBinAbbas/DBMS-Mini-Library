@@ -165,3 +165,10 @@
 -- AFTER INSERT OR DELETE ON issued_book
 -- FOR EACH ROW
 -- EXECUTE FUNCTION update_no_of_copy();
+
+-- -- Create a view to display details of issued books along with user information -- --
+-- CREATE OR REPLACE VIEW issued_books_view AS
+-- SELECT ib.issuebookid, b.name AS book_name, u.first_name || ' ' || u.last_name AS user_name, ib.issue_date_time, ib.expected_return_date, ib.return_date_time, ib.status
+-- FROM issued_book ib
+-- JOIN book b ON ib.bookid = b.bookid
+-- JOIN "user" u ON ib.userid = u.id;
