@@ -10,8 +10,9 @@ This repository contains a Database Management System (DBMS) project for a Libra
 5. **Edit Books**: Librarians can edit the details of existing books.
 6. **Return Books**: Library members can return borrowed books.
 7. **Delete Books**: Librarians can remove books from the library database.
-8. **Show Books**: Users can view the list of available books in the library.
-9. **Change Password**: Users can change their login password for security purposes.
+8. **Search Books**: Librarians can search  the specific book from a list of available books in the library.
+9. **Show Books**: Users can view the list of available books in the library.
+10. **Change Password**: Users can change their login password for security purposes.
 
 ### Usage:
 1. **Setup**: Clone the repository and set up the required database.
@@ -49,10 +50,41 @@ For detailed instructions on setting up and using the Library Management System,
 
 **Happy coding and happy reading!** 📚
 
+### Frontend of Library Management System:
 
+### Login Page:
+![login page](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/39067311-0a45-4dd8-a00f-5c7bf72c0b38)
 
+### Sign Up Page:
+![sign up page](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/f4278f74-f46c-4c7e-8294-e06447be1ce7)
 
+### Dashboard Portal:
+![dashboardportal](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/87d479a1-2e6e-4a53-9d01-82c2d99bdf10)
 
+### Add Books:
+![add books](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/88d0e791-ac2c-4242-ace9-2108e1c69458)
+
+### Issue Books:
+![issue book](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/b971658f-bc27-4aa2-8674-7d16d195566c)
+
+### Edit Books:
+![edit book 1](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/fc7d39f8-9c4f-422d-8218-fba05f64f21b)
+![edit books 2](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/4e060e2d-5c6b-4a4e-b343-4397c6132c45)
+
+### Return Books:
+![Return book](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/dfbc7703-81d0-4b16-8b8f-22da1661b215)
+
+### Delete Books:
+![Delete book](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/10951028-e3d9-4a93-aeb6-c42d4b728453)
+
+### Search Books:
+![search](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/289880bf-45ca-497e-aaa8-2290cc2404b8)
+
+### Show Books:
+![show books](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/85950719-5377-4a71-91fb-8944d288258a)
+
+### Change Password:
+![change password](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/3bc32762-cc9a-4f36-91e5-525a5357df3d)
 
 
 
