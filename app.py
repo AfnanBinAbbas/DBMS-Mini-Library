@@ -497,7 +497,6 @@ def saveCategory():
 @app.route("/editCategory", methods =['GET', 'POST'])
 def editCategory():
     if 'loggedin' in session:
-        # Connect to the PostgreSQL database
         conn = psycopg2.connect(
             host="localhost",
             dbname="lms",
