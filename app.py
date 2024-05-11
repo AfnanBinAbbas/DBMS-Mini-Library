@@ -530,7 +530,6 @@ def delete_category():
         return redirect(url_for('category'))
     return redirect(url_for('login'))
 
-# Manage Author   
 @app.route("/author", methods =['GET', 'POST'])
 def author():
     if 'loggedin' in session:
