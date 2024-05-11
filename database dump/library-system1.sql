@@ -66,7 +66,7 @@
 
 -- -- --------------------------------------------------------
 
--- -- Table structure for table issued_book
+-- -- Table structure for table issued_book -- --
 
 -- CREATE TABLE issued_book (
 --   issuebookid SERIAL PRIMARY KEY,
@@ -78,7 +78,7 @@
 --   status VARCHAR(20) NOT NULL
 -- );
 
--- -- Dumping data for table issued_book
+-- -- Dumping data for table issued_book -- --
 
 -- INSERT INTO issued_book (bookid, userid, issue_date_time, expected_return_date, return_date_time, status) VALUES
 -- (2, 2, '2022-06-12 15:33:45', '2022-06-15 16:27:59', '2022-06-16 16:27:59', 'Not Return'),
