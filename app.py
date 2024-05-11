@@ -18,7 +18,6 @@ conn = psycopg2.connect(
 
 cur = conn.cursor()
 
-# Create Flask app
 app = Flask(__name__,template_folder='pages')
 app.secret_key = 'abcd2123445'
 
