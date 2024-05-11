@@ -49,6 +49,30 @@
 			<a href="{{url_for('login')}}">Back</a>
 		</form>
 	</div>
+	<script type="module">
+		// Import the functions you need from the SDKs you need
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+		import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
+		// TODO: Add SDKs for Firebase products that you want to use
+		// https://firebase.google.com/docs/web/setup#available-libraries
+
+		// Your web app's Firebase configuration
+		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+		const firebaseConfig = {
+			apiKey: "AIzaSyANie61Q-n-dtROClfAUHkHcDFMZAS1elM",
+			authDomain: "dbms-mini-library.firebaseapp.com",
+			databaseURL: "https://dbms-mini-library-default-rtdb.asia-southeast1.firebasedatabase.app",
+			projectId: "dbms-mini-library",
+			storageBucket: "dbms-mini-library.appspot.com",
+			messagingSenderId: "243636977038",
+			appId: "1:243636977038:web:458def234a3e18c78078df",
+			measurementId: "G-R3XPG94ZDM"
+		};
+
+		// Initialize Firebase
+		const app = initializeApp(firebaseConfig);
+		const analytics = getAnalytics(app);
+	</script>
 </body>
 
 
