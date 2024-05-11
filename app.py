@@ -31,7 +31,6 @@ def login():
     if request.method == 'POST' and 'email' in request.form and 'password' in request.form:
         email = request.form['email']
         password = request.form['password']
-        # role = request.form['role']
         cur.execute('SELECT * FROM "user" WHERE email = %s AND password = %s', (email, password,))
         user = cur.fetchone()
         if user:
