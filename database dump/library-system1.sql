@@ -35,7 +35,7 @@
 --   updated_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 -- );
 
--- -- Dumping data for table book
+-- -- Dumping data for table book -- --
 
 -- INSERT INTO book (categoryid, authorid, rackid, name, picture, publisherid, isbn, no_of_copy, status, added_on, updated_on) VALUES
 -- (2, 2, 2, 'The Joy of PHP Programming', 'joy-php.jpg', 8, 'B00BALXN70', 10, 'Enable', '2022-06-12 11:12:48', '2022-06-12 11:13:27'),
