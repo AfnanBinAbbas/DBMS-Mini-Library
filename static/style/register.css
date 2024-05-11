@@ -22,6 +22,7 @@ body {
 .container {
     width: 400px;
     margin: 0 auto;
+    margin-bottom: 50px;
     background-color: rgba(255, 255, 255, 0.8);
     /* Semi-transparent white background */
     padding: 20px;
@@ -34,14 +35,15 @@ body {
 h1 {
     text-align: center;
     margin-bottom: 20px;
-    color: #942c2c;
+    color: #333;
+
     /* Changed title color */
 }
 
 h3 {
     text-align: center;
     margin-bottom: 20px;
-    color: #333;
+    color: #942c2c;
     /* Changed message color */
 }
 
@@ -79,7 +81,7 @@ h3 {
 }
 
 .btn-group button {
-    background-color: #eb6149;
+    background-color: #4682b4;
     /* Changed login button color */
     color: #fff;
     margin-right: 10pxrgb(255, 95, 67);
@@ -130,7 +132,7 @@ nav {
 
 
 .btn2 {
-    background-color: #aa3434;
+    background-color: #ff6347;
     color: #fff;
     font-size: 1vw;
     font-weight: 500;

@@ -18,7 +18,7 @@
 
         .container {
             width: 400px;
-            margin: 100px auto;
+            margin: 0 auto;
             background-color: rgba(255, 255, 255, 0.8);
             /* Semi-transparent white background */
             padding: 20px;
@@ -99,10 +99,10 @@
                 <label for="registration_number">Registration Number:</label>
                 <input type="text" id="registration_number" name="registration_number" required>
             </div>
-            <div class="input-group">
+            <!-- <div class="input-group">
                 <label for="faculty">Faculty:</label>
                 <input type="text" id="faculty" name="faculty" required>
-            </div>
+            </div> -->
             <div class="input-group">
                 <label for="contact_number">Contact Number:</label>
                 <input type="text" id="contact_number" name="contact_number" required>
@@ -117,8 +117,8 @@
             </div>
             <div class="btn-group">
                 <button type="submit">Sign Up</button>
-                <a href="login.html">Login</a>
             </div>
+            <a href="{{url_for('login')}}">back</a>
         </form>
     </div>
 </body>

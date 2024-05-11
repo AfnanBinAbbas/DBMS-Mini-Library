@@ -2,6 +2,12 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import psycopg2
 import re
 import psycopg2.extras
+import firebase_admin
+from firebase_admin import credentials
+
+cred = credentials.Certificate("serviceAccountKey.json")
+firebase_admin.initialize_app(cred)
+
 # Connect to PostgreSQL database
 conn = psycopg2.connect(
     host="localhost",
@@ -190,7 +196,7 @@ def register():
         password = request.form['password']
         email = request.form['email']
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cursor.execute('SELECT * FROM user WHERE email = % s', (email, ))
+        cursor.execute('SELECT * FROM user WHERE email = %s', (email,))
         account = cursor.fetchone()
         if account:
             mesage = 'Account already exists !'
@@ -199,7 +205,7 @@ def register():
         elif not userName or not password or not email:
             mesage = 'Please fill out the form !'
         else:
-            cursor.execute('INSERT INTO user VALUES (NULL, % s, % s, % s)', (userName, email, password, ))
+            cursor.execute('INSERT INTO user VALUES (NULL, %s, %s, %s)', (userName, email, password, ))
             psycopg2.connection.commit()
             mesage = 'You have successfully registered !'
     elif request.method == 'POST':
