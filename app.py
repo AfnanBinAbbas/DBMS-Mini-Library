@@ -654,7 +654,6 @@ def savePublisher():
             status = request.form['status']             
             action = request.form['action']  
             
-            # Check if publisherid is present and not empty
             if 'publisherid' in request.form and request.form['publisherid']:
                 publisherid = request.form['publisherid'] 
             else:
