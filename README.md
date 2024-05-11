@@ -36,7 +36,6 @@ This repository contains a Database Management System (DBMS) project for a Libra
 5. **Access the application**: Visit `http://localhost:5000` in your web browser.
 
 ### Contributors:
-[List of contributors or team members]
 https://github.com/naqirraza99
 https://github.com/AfnanBinAbbas
 
@@ -51,6 +50,7 @@ For detailed instructions on setting up and using the Library Management System,
 **Happy coding and happy reading!** 📚
 
 ### Frontend of Library Management System:
+### Landing Page:
 
 ### Login Page:
 ![login page](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/39067311-0a45-4dd8-a00f-5c7bf72c0b38)
