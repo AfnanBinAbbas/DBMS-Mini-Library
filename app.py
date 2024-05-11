@@ -551,7 +551,6 @@ def author():
 @app.route("/saveAuthor", methods=['GET', 'POST'])
 def saveAuthor():
     if 'loggedin' in session:
-        # Connect to the PostgreSQL database
         conn = psycopg2.connect(
             host="localhost",
             dbname="lms",
