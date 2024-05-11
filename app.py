@@ -281,7 +281,6 @@ def edit_book():
 def save_book():
     msg = ''
     if 'loggedin' in session:
-        # Connect to the PostgreSQL database
         conn = psycopg2.connect(
             host="localhost",
             dbname="lms",
