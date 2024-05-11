@@ -119,7 +119,6 @@ def edit_user(): #edit function
                 users = cursor.fetchall()
                 return render_template("edit_user.html", users=users)
             except psycopg2.Error as e:
-                # Handle any database errors
                 msg = f"Database error: {e}"
         else:
             msg = "User ID not provided"
