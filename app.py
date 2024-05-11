@@ -115,7 +115,6 @@ def edit_user(): #edit function
         if editUserId:
             cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
             
-            # Use try-except block to handle potential errors
             try:
                 # Execute the SQL query safely
                 cursor.execute('SELECT * FROM "user" WHERE id = %s', (editUserId, ))
