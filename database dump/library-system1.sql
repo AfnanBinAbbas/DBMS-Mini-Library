@@ -125,7 +125,7 @@
 
 -- -- --------------------------------------------------------
 
--- -- Table structure for table user
+-- -- Table structure for table user -- --
 
 -- CREATE TABLE "user" (
 --   id SERIAL PRIMARY KEY,
@@ -136,7 +136,7 @@
 --   role VARCHAR(10) DEFAULT 'admin'
 -- );
 
--- -- Dumping data for table user
+-- -- Dumping data for table user -- --
 
 -- INSERT INTO "user" (first_name, last_name, email, password, role) VALUES
 -- ('Mark', 'Wood', 'mark@webdamn.com', '123', 'user'),
