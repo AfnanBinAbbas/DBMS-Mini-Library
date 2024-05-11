@@ -217,3 +217,52 @@ def migrate_publishers():
 
 # Execute publisher migration
 migrate_publishers()
+def get_racks():
+    racks_ref = db.collection('racks')
+    return racks_ref.get()
+
+# PostgreSQL connection parameters for rack migration
+pg_connection_params = {
+    'dbname': 'LibraryManagementSystem',
+    'user': 'postgres',
+    'password': 'pgadmin4',
+    'host': 'localhost',
+    'port': '5432'
+}
+
+# Function to fetch data from PostgreSQL and upload to Firestore for rack migration
+def migrate_racks():
+    try:
+        # Connect to PostgreSQL
+        conn = psycopg2.connect(**pg_connection_params)
+        cursor = conn.cursor()
+
+        # Fetch data from PostgreSQL table
+        cursor.execute("SELECT * FROM rack")
+        records = cursor.fetchall()
+
+        # Firestore collection reference for racks
+        collection_ref = db.collection('racks')
+
+        # Upload data to Firestore
+        for record in records:
+            data = {
+                'rackid': record[0],
+                'name': record[1],
+                'status': record[2]
+            }
+            # Add document to Firestore collection
+            collection_ref.add(data)
+
+        print("Rack migration completed successfully.")
+
+    except Exception as e:
+        print("Error:", e)
+
+    finally:
+        # Close PostgreSQL connection
+        cursor.close()
+        conn.close()
+
+# Execute rack migration
+migrate_racks()
