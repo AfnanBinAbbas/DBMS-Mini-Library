@@ -185,7 +185,6 @@ def register():
         password = request.form['password']
         email = request.form['email']
         
-        # Check if the email already exists in the database
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         cursor.execute('SELECT * FROM "user" WHERE email = %s', (email,))
         account = cursor.fetchone()
