@@ -36,8 +36,8 @@ This repository contains a Database Management System (DBMS) project for a Libra
 5. **Access the application**: Visit `http://localhost:5000` in your web browser.
 
 ### Contributors:
-https://github.com/naqirraza99
-https://github.com/AfnanBinAbbas
+1. https://github.com/naqirraza99
+2. https://github.com/AfnanBinAbbas
 
 
 
@@ -52,11 +52,23 @@ For detailed instructions on setting up and using the Library Management System,
 ### Frontend of Library Management System:
 ### Landing Page:
 
-### Login Page:
-![login page](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/39067311-0a45-4dd8-a00f-5c7bf72c0b38)
+### Home Page:
+![WhatsApp Image 2024-05-11 at 20 55 54_f6f40a99](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/898bd19e-6695-437d-aa7e-1296dc7972fa)
 
-### Sign Up Page:
-![sign up page](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/f4278f74-f46c-4c7e-8294-e06447be1ce7)
+### Login Page:
+![WhatsApp Image 2024-05-11 at 21 46 33_5824a5f5](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/7da5097e-fee5-4b6a-8798-1760739479f3)
+
+### SignUp Page:
+![WhatsApp Image 2024-05-11 at 21 48 30_f25e0f98](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/3fb7cbbc-cd13-4e01-bbe2-0d30365e065a)
+
+### Library Catalog:
+![WhatsApp Image 2024-05-11 at 21 15 44_f380fc41](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/984d0e1c-92a9-4805-8c1c-fe79c18223a6)
+
+### Featured Books:
+![WhatsApp Image 2024-05-11 at 21 18 47_67479d82](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/5be37297-64d9-4540-9875-8473d8e080b5)
+
+### Browse Books:
+![WhatsApp Image 2024-05-11 at 21 23 41_9ac3a989](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/fd8de4c8-b5e1-422a-ad7e-ae5897f22b7e)
 
 ### Dashboard Portal:
 ![dashboardportal](https://github.com/AfnanBinAbbas/DBMS-Mini-Library/assets/119874734/87d479a1-2e6e-4a53-9d01-82c2d99bdf10)

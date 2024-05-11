@@ -1,8 +1,8 @@
 -- -- Database: library_system
 
--- -- --------------------------------------------------------
+-- -- ---------------------------------------------------------------------------------------------------------------
 
--- -- Table structure for table author
+-- -- Table structure for table author -- --
 
 -- CREATE TABLE author (
 --   authorid SERIAL PRIMARY KEY,
@@ -10,7 +10,7 @@
 --   status VARCHAR(10) NOT NULL
 -- );
 
--- -- Dumping data for table author
+-- -- Dumping data for table author -- --
 
 -- INSERT INTO author (name, status) VALUES
 -- ('Alan Forbes', 'Enable'),
@@ -18,7 +18,7 @@
 
 -- -- --------------------------------------------------------
 
--- -- Table structure for table book
+-- -- Table structure for table book -- --
 
 -- CREATE TABLE book (
 --   bookid SERIAL PRIMARY KEY,
@@ -35,7 +35,7 @@
 --   updated_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 -- );
 
--- -- Dumping data for table book
+-- -- Dumping data for table book -- --
 
 -- INSERT INTO book (categoryid, authorid, rackid, name, picture, publisherid, isbn, no_of_copy, status, added_on, updated_on) VALUES
 -- (2, 2, 2, 'The Joy of PHP Programming', 'joy-php.jpg', 8, 'B00BALXN70', 10, 'Enable', '2022-06-12 11:12:48', '2022-06-12 11:13:27'),
@@ -47,7 +47,7 @@
 
 -- -- --------------------------------------------------------
 
--- -- Table structure for table category
+-- -- Table structure for table category -- --
 
 -- CREATE TABLE category (
 --   categoryid SERIAL PRIMARY KEY,
@@ -55,7 +55,7 @@
 --   status VARCHAR(10) NOT NULL
 -- );
 
--- -- Dumping data for table category
+-- -- Dumping data for table category -- --
 
 -- INSERT INTO category (name, status) VALUES
 -- ('Web Design', 'Enable'),
@@ -66,7 +66,7 @@
 
 -- -- --------------------------------------------------------
 
--- -- Table structure for table issued_book
+-- -- Table structure for table issued_book -- --
 
 -- CREATE TABLE issued_book (
 --   issuebookid SERIAL PRIMARY KEY,
@@ -78,7 +78,7 @@
 --   status VARCHAR(20) NOT NULL
 -- );
 
--- -- Dumping data for table issued_book
+-- -- Dumping data for table issued_book -- --
 
 -- INSERT INTO issued_book (bookid, userid, issue_date_time, expected_return_date, return_date_time, status) VALUES
 -- (2, 2, '2022-06-12 15:33:45', '2022-06-15 16:27:59', '2022-06-16 16:27:59', 'Not Return'),
@@ -87,7 +87,7 @@
 
 -- -- --------------------------------------------------------
 
--- -- Table structure for table publisher
+-- -- Table structure for table publisher -- --
 
 -- CREATE TABLE publisher (
 --   publisherid SERIAL PRIMARY KEY,
@@ -95,7 +95,7 @@
 --   status VARCHAR(10) NOT NULL
 -- );
 
--- -- Dumping data for table publisher
+-- -- Dumping data for table publisher -- --
 
 -- INSERT INTO publisher (name, status) VALUES
 -- ('Amazon publishing', 'Enable'),
@@ -109,7 +109,7 @@
 
 -- -- --------------------------------------------------------
 
--- -- Table structure for table rack
+-- -- Table structure for table rack -- --
 
 -- CREATE TABLE rack (
 --   rackid SERIAL PRIMARY KEY,
@@ -117,7 +117,7 @@
 --   status VARCHAR(10) NOT NULL DEFAULT 'Enable'
 -- );
 
--- -- Dumping data for table rack
+-- -- Dumping data for table rack -- --
 
 -- INSERT INTO rack (name, status) VALUES
 -- ('R1', 'Enable'),
@@ -125,7 +125,7 @@
 
 -- -- --------------------------------------------------------
 
--- -- Table structure for table user
+-- -- Table structure for table user -- --
 
 -- CREATE TABLE "user" (
 --   id SERIAL PRIMARY KEY,
@@ -136,10 +136,39 @@
 --   role VARCHAR(10) DEFAULT 'admin'
 -- );
 
--- -- Dumping data for table user
+-- -- Dumping data for table user -- --
 
 -- INSERT INTO "user" (first_name, last_name, email, password, role) VALUES
 -- ('Mark', 'Wood', 'mark@webdamn.com', '123', 'user'),
 -- ('George', 'Smith', 'goerge@webdamn.com', '123', 'admin'),
 -- ('Adam', NULL, 'adam@webdamn.com', '123', 'admin'),
 -- ('aaa', 'bbbbb', 'ab@webdamn.com', '123', 'user');
+
+-- -- Create a trigger to update the 'no_of_copy' column in the 'book' table -- --
+-- CREATE OR REPLACE FUNCTION update_no_of_copy()
+-- RETURNS TRIGGER AS $$
+-- BEGIN
+--     IF TG_OP = 'INSERT' THEN
+--         UPDATE book
+--         SET no_of_copy = no_of_copy - 1
+--         WHERE bookid = NEW.bookid;
+--     ELSIF TG_OP = 'DELETE' THEN
+--         UPDATE book
+--         SET no_of_copy = no_of_copy + 1
+--         WHERE bookid = OLD.bookid;
+--     END IF;
+--     RETURN NULL;
+-- END;
+-- $$ LANGUAGE plpgsql;
+
+-- CREATE TRIGGER update_no_of_copy_trigger -- 
+-- AFTER INSERT OR DELETE ON issued_book
+-- FOR EACH ROW
+-- EXECUTE FUNCTION update_no_of_copy();
+
+-- -- Create a view to display details of issued books along with user information -- --
+-- CREATE OR REPLACE VIEW issued_books_view AS
+-- SELECT ib.issuebookid, b.name AS book_name, u.first_name || ' ' || u.last_name AS user_name, ib.issue_date_time, ib.expected_return_date, ib.return_date_time, ib.status
+-- FROM issued_book ib
+-- JOIN book b ON ib.bookid = b.bookid
+-- JOIN "user" u ON ib.userid = u.id;
