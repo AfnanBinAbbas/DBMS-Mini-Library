@@ -79,7 +79,6 @@ def users(): #user function
 
 # def users():
 #     if 'loggedin' in session:
-#         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 @app.route("/save_user", methods =['GET', 'POST'])
 def save_user(): #save user function
