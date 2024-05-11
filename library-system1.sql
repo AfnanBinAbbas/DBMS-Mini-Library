@@ -1,4 +1,4 @@
--- -- Database: library_system
+-- -- Database: libraryManagementSystem
 
 -- -- --------------------------------------------------------
 
