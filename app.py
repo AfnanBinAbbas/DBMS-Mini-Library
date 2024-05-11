@@ -86,16 +86,8 @@ def users():
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         cursor.execute('SELECT * FROM user')
         users = cursor.fetchall()    
-        return render_template("users.html", users = users)
+        return render_template("users.html", users=users)
     return redirect(url_for('login'))
-
-# def users():
-#     if 'loggedin' in session:
-#         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-#         cursor.execute('SELECT * FROM user')
-#         users = cursor.fetchall()    
-#         return render_template("users.html", users = users)
-#     return redirect(url_for('login'))
 
 @app.route("/save_user", methods =['GET', 'POST'])
 def save_user():
@@ -188,29 +180,40 @@ def logout():
     session.pop('email', None)
     return redirect(url_for('login'))
   
-@app.route('/register', methods =['GET', 'POST'])
+from flask import Flask, render_template, request, redirect, url_for, session
+import psycopg2
+import re
+import psycopg2.extras
+
+@app.route('/register', methods=['GET', 'POST'])
 def register():
-    mesage = ''
-    if request.method == 'POST' and 'name' in request.form and 'password' in request.form and 'email' in request.form :
-        userName = request.form['name']
+    message = ''
+    if request.method == 'POST' and 'first_name' in request.form and 'last_name' in request.form and 'password' in request.form and 'email' in request.form:
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
         password = request.form['password']
         email = request.form['email']
+        
+        # Check if the email already exists in the database
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cursor.execute('SELECT * FROM user WHERE email = %s', (email,))
+        cursor.execute('SELECT * FROM "user" WHERE email = %s', (email,))
         account = cursor.fetchone()
+        
         if account:
-            mesage = 'Account already exists !'
+            message = 'Account already exists!'
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-            mesage = 'Invalid email address !'
-        elif not userName or not password or not email:
-            mesage = 'Please fill out the form !'
+            message = 'Invalid email address!'
+        elif not first_name or not last_name or not password or not email:
+            message = 'Please fill out the form!'
         else:
-            cursor.execute('INSERT INTO user VALUES (NULL, %s, %s, %s)', (userName, email, password, ))
-            psycopg2.connection.commit()
-            mesage = 'You have successfully registered !'
+            # Insert the new user into the database
+            cursor.execute('INSERT INTO "user" (first_name, last_name, email, password) VALUES (%s, %s, %s, %s)', (first_name, last_name, email, password))
+            conn.commit()
+            message = 'You have successfully registered!'
     elif request.method == 'POST':
-        mesage = 'Please fill out the form !'
-    return render_template('register.html', mesage = mesage)
+        message = 'Please fill out the form!'
+        
+    return render_template('register.html', message=message)
 
 # Manage Books   
 @app.route("/books", methods =['GET', 'POST'])
