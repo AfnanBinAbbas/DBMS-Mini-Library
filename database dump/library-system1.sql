@@ -87,7 +87,7 @@
 
 -- -- --------------------------------------------------------
 
--- -- Table structure for table publisher
+-- -- Table structure for table publisher -- --
 
 -- CREATE TABLE publisher (
 --   publisherid SERIAL PRIMARY KEY,
@@ -95,7 +95,7 @@
 --   status VARCHAR(10) NOT NULL
 -- );
 
--- -- Dumping data for table publisher
+-- -- Dumping data for table publisher -- --
 
 -- INSERT INTO publisher (name, status) VALUES
 -- ('Amazon publishing', 'Enable'),
