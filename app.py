@@ -115,7 +115,6 @@ def edit_user(): #edit function
             cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
             
             try:
-                # Execute the SQL query safely
                 cursor.execute('SELECT * FROM "user" WHERE id = %s', (editUserId, ))
                 users = cursor.fetchall()
                 return render_template("edit_user.html", users=users)
