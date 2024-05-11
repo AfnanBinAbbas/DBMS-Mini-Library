@@ -515,7 +515,6 @@ def editCategory():
 @app.route("/delete_category", methods =['GET'])
 def delete_category():
     if 'loggedin' in session:
-        # Connect to the PostgreSQL database
         conn = psycopg2.connect(
             host="localhost",
             dbname="lms",
