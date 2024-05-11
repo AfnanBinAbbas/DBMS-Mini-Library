@@ -338,7 +338,6 @@ def delete_book():
     return redirect(url_for('login'))
  
     
-# Manage issue book   
 @app.route("/list_issue_book", methods =['GET', 'POST'])
 def list_issue_book():
     if 'loggedin' in session:
