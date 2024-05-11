@@ -61,3 +61,49 @@ sync_data()
 authors = get_authors()
 for author in authors:
     print(f"Author ID: {author.id}, Name: {author.get('name')}, Status: {author.get('status')}")
+
+# Function to fetch data from PostgreSQL and upload to Firestore
+def migrate_data():
+    try:
+        # Connect to PostgreSQL
+        conn = psycopg2.connect(**pg_connection_params)
+        cursor = conn.cursor()
+
+        # Fetch data from PostgreSQL table
+        cursor.execute("SELECT * FROM book")
+        records = cursor.fetchall()
+
+        # Firestore collection reference
+        collection_ref = db.collection('books')
+
+        # Upload data to Firestore
+        for record in records:
+            data = {
+                'bookid': record[0],
+                'categoryid': record[1],
+                'authorid': record[2],
+                'rackid': record[3],
+                'name': record[4],
+                'picture': record[5],
+                'publisherid': record[6],
+                'isbn': record[7],
+                'no_of_copy': record[8],
+                'status': record[9],
+                'added_on': record[10].isoformat(),  # Convert timestamp to ISO format
+                'updated_on': record[11].isoformat()  # Convert timestamp to ISO format
+            }
+            # Add document to Firestore collection
+            collection_ref.add(data)
+
+        print("Data migration completed successfully.")
+
+    except Exception as e:
+        print("Error:", e)
+
+    finally:
+        # Close PostgreSQL connection
+        cursor.close()
+        conn.close()
+
+# Execute data migration
+migrate_data()
