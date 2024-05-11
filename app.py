@@ -21,7 +21,6 @@ cur = conn.cursor()
 app = Flask(__name__,template_folder='pages')
 app.secret_key = 'abcd2123445'
 
-#Landing_Page
 @app.route('/')
 def home():
     return render_template('home.html')
