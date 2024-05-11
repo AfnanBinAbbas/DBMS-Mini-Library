@@ -15,7 +15,7 @@
         }
 
         .container {
-            max-width: 450px;
+            max-width: 550px;
             margin: 50px auto;
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
@@ -26,6 +26,7 @@
         h1 {
             text-align: center;
             margin-bottom: 30px;
+            font-size: 40px;
             color: #942c2c;
         }
 
@@ -36,28 +37,42 @@
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            font-size: 20px;
+            font-size: 24px;
 
             color: #333;
         }
 
         .form-group input {
-            width: 95%;
+            width: 98%;
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            height: 30px;
         }
 
-        .button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
+        .btn-group {
             text-align: center;
+            font-size: 22px;
+        }
+
+        .btn-group button, .btn-group a {
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
-            font-size: 20px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            font-size: 22px;
+        }
+
+        .btn-group button {
+            background-color: #4682b4; /* Changed login button color */
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .btn-group a {
+            background-color: #ff6347; /* Changed sign up button color */
+            color: #fff;
+            text-decoration: none;
         }
 
         .button:hover {
@@ -93,7 +108,10 @@
                 <label for="price">Price:</label>
                 <input type="text" id="price" name="price" required>
             </div>
-            <button class="button" type="button" onclick="addBook()">Add Book</button>
+            <div class="btn-group">
+            <button class="button" onclick="addBook()">Add Book</button>
+            <a href="dashboard.html">Back</a>
+            </div>
         </form>
     </div>
 
