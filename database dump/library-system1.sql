@@ -143,3 +143,20 @@
 -- ('George', 'Smith', 'goerge@webdamn.com', '123', 'admin'),
 -- ('Adam', NULL, 'adam@webdamn.com', '123', 'admin'),
 -- ('aaa', 'bbbbb', 'ab@webdamn.com', '123', 'user');
+
+-- -- Create a trigger to update the 'no_of_copy' column in the 'book' table -- --
+-- CREATE OR REPLACE FUNCTION update_no_of_copy()
+-- RETURNS TRIGGER AS $$
+-- BEGIN
+--     IF TG_OP = 'INSERT' THEN
+--         UPDATE book
+--         SET no_of_copy = no_of_copy - 1
+--         WHERE bookid = NEW.bookid;
+--     ELSIF TG_OP = 'DELETE' THEN
+--         UPDATE book
+--         SET no_of_copy = no_of_copy + 1
+--         WHERE bookid = OLD.bookid;
+--     END IF;
+--     RETURN NULL;
+-- END;
+-- $$ LANGUAGE plpgsql;
