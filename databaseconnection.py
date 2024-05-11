@@ -182,3 +182,38 @@ def migrate_issued_books():
 
 # Execute issued book migration
 migrate_issued_books()
+def migrate_publishers():
+    try:
+        # Connect to PostgreSQL
+        conn = psycopg2.connect(**pg_connection_params)
+        cursor = conn.cursor()
+
+        # Fetch data from PostgreSQL table
+        cursor.execute("SELECT * FROM publisher")
+        records = cursor.fetchall()
+
+        # Firestore collection reference for publishers
+        collection_ref = db.collection('publishers')
+
+        # Upload data to Firestore
+        for record in records:
+            data = {
+                'publisherid': record[0],
+                'name': record[1],
+                'status': record[2]
+            }
+            # Add document to Firestore collection
+            collection_ref.add(data)
+
+        print("Publisher migration completed successfully.")
+
+    except Exception as e:
+        print("Error:", e)
+
+    finally:
+        # Close PostgreSQL connection
+        cursor.close()
+        conn.close()
+
+# Execute publisher migration
+migrate_publishers()
