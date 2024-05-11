@@ -6,12 +6,18 @@ import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "serviceAccountkey.json"
 db = firestore.Client()
 
+# Function to retrieve authors from Firestore
+def get_authors():
+    authors_ref = db.collection('postgress_data')
+    return authors_ref.get()
+
 # PostgreSQL connection parameters
 pg_connection_params = {
     'dbname': 'LibraryManagementSystem',
     'user': 'postgres',
     'password': 'pgadmin4',
-    'host': 'localhost:5432'  # Or your PostgreSQL host address
+    'host': 'localhost',
+    'port': '5432'
 }
 
 # Firestore collection reference
@@ -31,9 +37,9 @@ def sync_data():
         # Upload data to Firestore
         for record in records:
             data = {
-                'column1': record[0],  # Assuming column 1 is represented by the first value in the record
-                'column2': record[1],  # Assuming column 2 is represented by the second value in the record
-                # Add more columns as needed
+                'authorid': record[0],
+                'name': record[1],
+                'status': record[2]
             }
             # Add document to Firestore collection
             collection_ref.add(data)
@@ -50,6 +56,8 @@ def sync_data():
 
 # Execute data synchronization
 sync_data()
+
+# Retrieve authors from Firestore and print their details
 authors = get_authors()
 for author in authors:
     print(f"Author ID: {author.id}, Name: {author.get('name')}, Status: {author.get('status')}")
