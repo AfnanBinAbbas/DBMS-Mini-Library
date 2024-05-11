@@ -710,7 +710,6 @@ def delete_publisher():
         return redirect(url_for('publisher'))
     return redirect(url_for('login'))
  
-# Manage Rack   
 @app.route("/rack", methods =['GET', 'POST'])
 def rack():
     if 'loggedin' in session:
