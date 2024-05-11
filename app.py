@@ -78,7 +78,6 @@ def users(): #user function
     return redirect(url_for('login'))
 
 # def users():
-#     if 'loggedin' in session:
 
 @app.route("/save_user", methods =['GET', 'POST'])
 def save_user(): #save user function
