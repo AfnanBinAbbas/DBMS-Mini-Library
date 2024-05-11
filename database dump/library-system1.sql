@@ -1,8 +1,8 @@
 -- -- Database: library_system
 
--- -- --------------------------------------------------------
+-- -- ---------------------------------------------------------------------------------------------------------------
 
--- -- Table structure for table author
+-- -- Table structure for table author -- --
 
 -- CREATE TABLE author (
 --   authorid SERIAL PRIMARY KEY,
