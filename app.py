@@ -197,7 +197,6 @@ def register():
         elif not first_name or not last_name or not password or not email:
             message = 'Please fill out the form!'
         else:
-            # Insert the new user into the database
             cursor.execute('INSERT INTO "user" (first_name, last_name, email, password) VALUES (%s, %s, %s, %s)', (first_name, last_name, email, password))
             conn.commit()
             message = 'You have successfully registered!'
