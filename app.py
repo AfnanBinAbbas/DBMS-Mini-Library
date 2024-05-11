@@ -602,7 +602,6 @@ def editAuthor():
 @app.route("/delete_author", methods=['GET'])
 def delete_author():
     if 'loggedin' in session:
-        # Connect to the PostgreSQL database
         conn = psycopg2.connect(
             host="localhost",
             dbname="lms",
