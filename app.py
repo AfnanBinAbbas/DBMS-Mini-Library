@@ -403,7 +403,6 @@ def save_issue_book():
 def edit_issue_book():
     msg = ''    
     if 'loggedin' in session:
-        # Connect to the PostgreSQL database
         conn = psycopg2.connect(
             host="localhost",
             dbname="lms",
