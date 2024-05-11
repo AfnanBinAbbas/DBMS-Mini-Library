@@ -210,7 +210,6 @@ def register():
 @app.route("/books", methods =['GET', 'POST'])
 def books():
     if 'loggedin' in session:
-        # Connect to the PostgreSQL database
         conn = psycopg2.connect(
             host="localhost",
             dbname="lms",
