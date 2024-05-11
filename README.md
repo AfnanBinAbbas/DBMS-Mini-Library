@@ -36,7 +36,6 @@ This repository contains a Database Management System (DBMS) project for a Libra
 5. **Access the application**: Visit `http://localhost:5000` in your web browser.
 
 ### Contributors:
-[List of contributors or team members]
 https://github.com/naqirraza99
 https://github.com/AfnanBinAbbas
 
