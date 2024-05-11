@@ -82,7 +82,8 @@ def users(): #user function
 #         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 #         cursor.execute('SELECT * FROM user')
 #         users = cursor.fetchall()    
-#         return render_template("users.html", users=users)
+
+
 @app.route("/save_user", methods =['GET', 'POST'])
 def save_user(): #save user function
     msg = ''    
