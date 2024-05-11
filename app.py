@@ -65,7 +65,7 @@ def get_db_connection():
     )
 
 @app.route("/users")
-def users():
+def users(): #user function
     if 'loggedin' in session:
         try:
             conn = get_db_connection()
@@ -90,7 +90,7 @@ def users():
 #     return redirect(url_for('login'))
 
 @app.route("/save_user", methods =['GET', 'POST'])
-def save_user():
+def save_user(): #save user function
     msg = ''    
     if 'loggedin' in session:        
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
@@ -118,7 +118,7 @@ def save_user():
     return redirect(url_for('login'))
 
 @app.route("/edit_user", methods=['GET', 'POST'])
-def edit_user():
+def edit_user(): #edit function
     msg = ''    
     if 'loggedin' in session:
         editUserId = request.args.get('userid')
@@ -142,7 +142,7 @@ def edit_user():
     return redirect(url_for('login'))
 
 @app.route("/view_user", methods=['GET', 'POST'])
-def view_user():
+def view_user(): #view user
     if 'loggedin' in session:
         viewUserId = request.args.get('userid')   
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
@@ -152,7 +152,7 @@ def view_user():
     return redirect(url_for('login'))
     
 @app.route("/password_change", methods=['GET', 'POST'])
-def password_change():
+def password_change(): #password change function
     message = ''  # Corrected the variable name
     if 'loggedin' in session:
         changePassUserId = request.args.get('userid')        
@@ -175,7 +175,7 @@ def password_change():
     return redirect(url_for('login'))   
     
 @app.route("/delete_user", methods=['GET'])
-def delete_user():
+def delete_user(): #delete function
     if 'loggedin' in session:
         deleteUserId = request.args.get('userid')
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
