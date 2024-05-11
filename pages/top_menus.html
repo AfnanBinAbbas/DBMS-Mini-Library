@@ -1,32 +1,49 @@
+<style>
+
+</style>
 <nav>
 	<div class="nav__container">
-		<a href="{{url_for('dashboard')}}">
-			<img src="/static/assets/logo.png" alt="" class="logo__img" />
-		</a>
-	</div>
-	<!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-		data-target="#collapsingNavbar">
-		<span class="navbar-toggler-icon"></span>
-	</button> -->
-	<div class="navbar-collapse collapse" id="collapsingNavbar">
-		<!-- <ul class="navbar-nav">
-			<li class="nav-item active">
-				<h1><a class="nav-link" href="#">Library Management System <span class="sr-only">LMS</span></a></h1>
+		<img src="/static/assets/logo.png" alt="" class="logo__img" />
+		<ul class="nav__links">
+			<li>
+				<a class="nav__link--icon link__hover--effect link__hover--effect--red click" href=""><i
+						class="fa-solid fa-house"></i></a>
 			</li>
-		</ul> -->
-		<ul class="navbar-nav ml-auto">
-			{% if session['userid'] %}
-			<li class="nav-item">
-				<a class="nav-link" href="#">{{session.name}} </a> |
+			<li>
+				<a class="nav__link--icon link__hover--effect link__hover--effect--red click" href=""><i
+						class="fa-solid fa-envelope"></i>
+				</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{{ url_for('logout') }}"> Logout</a>
+			<li>
+				<a class="nav__link--icon link__hover--effect link__hover--effect--red click" href=""><i
+						class="fa-solid fa-cart-shopping"></i></a>
 			</li>
-			{% else %}
-			<li class="nav-item">
-				<a class="nav-link" href="index.php">Login</a>
+			<li>
+				<a href="/login">
+					<button class="btn2">Login</button>
+				</a>
 			</li>
-			{% endif %}
 		</ul>
+
+		<button class="btn__menu" onclick="toggleModal()">
+			<i class="fa-solid fa-bars"></i>
+		</button>
+		<div class="menu__backdrop">
+			<button class="btn__menu btn__menu--close" onclick="toggleModal()">
+				<i class="fa-solid fa-xmark"></i>
+			</button>
+
+			<ul class="menu__links">
+				<li class="menu__list">
+					<a class="menu__link" onclick="toggleModal()" href="#landing-page">Home</a>
+				</li>
+				<li class="menu__list">
+					<a class="menu__link" onclick="toggleModal()" href="mailto:shaheeerayyan@gmail.com">Contact</a>
+				</li>
+				<li class="menu__list">
+					<a class="menu__link no-cursor" onclick="toggleModal()" href="#featured">Buy</a>
+				</li>
+			</ul>
+		</div>
 	</div>
 </nav>
