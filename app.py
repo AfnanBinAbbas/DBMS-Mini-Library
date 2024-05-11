@@ -534,7 +534,6 @@ def delete_category():
 @app.route("/author", methods =['GET', 'POST'])
 def author():
     if 'loggedin' in session:
-        # Connect to the PostgreSQL database
         conn = psycopg2.connect(
             host="localhost",
             dbname="lms",
