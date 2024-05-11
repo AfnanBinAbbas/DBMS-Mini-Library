@@ -111,7 +111,6 @@ def edit_user(): #edit function
     if 'loggedin' in session:
         editUserId = request.args.get('userid')
         
-        # Check if editUserId is not empty
         if editUserId:
             cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
             
