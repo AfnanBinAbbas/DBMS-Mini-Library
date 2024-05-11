@@ -15,10 +15,10 @@
         }
 
         .container {
-            width: 400px;
-            margin: 100px auto;
+            width: 550px;
+            margin: 50px auto;
             background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-            padding: 40px;
+            padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -26,13 +26,14 @@
         h1 {
             text-align: center;
             margin-bottom: 20px;
+            font-size: 40px;
             color: #942c2c; /* Changed title color */
         }
 
         h3 {
             text-align: center;
             margin-bottom: 20px;
-            font-size: 24px;
+            font-size: 30px;
             color: #333; /* Changed message color */
         }
 
@@ -43,19 +44,22 @@
         .input-group label {
             display: block;
             margin-bottom: 5px;
-            font-size: 20px;
+            font-size: 24px;
             color: #333; /* Changed label color */
         }
 
         .input-group input {
-            width: 100%;
+            width: 98%;
             padding: 8px;
             border: 1px solid #ccc;
+            font-size: 22px;
+            height: 30px;
             border-radius: 5px;
         }
 
         .btn-group {
             text-align: center;
+            font-size: 22px;
         }
 
         .btn-group button, .btn-group a {
@@ -63,6 +67,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 22px;
         }
 
         .btn-group button {
@@ -107,11 +112,19 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <div class="btn-group">
-                <button type="submit">Sign Up</button>
-                <a href="login.html">Login</a>
+           <div class="btn-group">
+            <button class="button" onclick="signupBook()">Sign Up</button>
+                 <a href="login.html">Login</a>
             </div>
         </form>
     </div>
+    
+    <script>
+        function signupBook() {
+            // Code to handle issuing book goes here
+            // For demonstration purposes, you can alert success
+            alert("Sign Up successfully");
+        }
+    </script>
 </body>
 </html>
