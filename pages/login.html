@@ -10,9 +10,11 @@
 </head>
 <nav>
 	<div class="nav__container">
-		<img src="/static/assets/logo.png" alt="" class="logo__img" />
+		<a href="{{url_for('home')}}">
+			<img src="/static/assets/logo.png" alt="" class="logo__img" />
+		</a>
 
-		<button class="btn__menu" onclick="toggleModal()">
+		<!-- <button class="btn__menu" onclick="toggleModal()">
 			<i class="fa-solid fa-bars"></i>
 		</button>
 		<div class="menu__backdrop">
@@ -29,9 +31,9 @@
 				</li>
 				<li class="menu__list">
 					<a class="menu__link no-cursor" onclick="toggleModal()" href="#featured">Buy</a>
-				</li>
-			</ul>
-		</div>
+		</li>
+		</ul> -->
+	</div>
 	</div>
 </nav>
 
