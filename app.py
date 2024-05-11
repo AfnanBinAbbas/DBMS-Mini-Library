@@ -8,7 +8,6 @@ from firebase_admin import credentials
 cred = credentials.Certificate(r"C:\Local Disk E\Github\serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 
-# Connect to PostgreSQL database
 conn = psycopg2.connect(
     host="localhost",
     dbname="lms",
