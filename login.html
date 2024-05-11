@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=3.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Management System</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            font: size 50px;
+            font-size: 16px; /* Changed font size to a reasonable value */
             margin: 0;
             padding: 0;
             background-image: url('login1.jpg'); /* Add your image URL here */
@@ -24,16 +24,19 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
+        h1, h3 {
             text-align: center;
+        }
+
+        h1 {
             margin-bottom: 20px;
             color: #942c2c; /* Changed title color */
+            font-size: 40px;
         }
 
         h3 {
-            text-align: center;
             margin-bottom: 20px;
-            font-size: 24px;
+            font-size: 30px;
             color: #333; /* Changed message color */
         }
 
@@ -44,19 +47,21 @@
         .input-group label {
             display: block;
             margin-bottom: 5px;
-            font-size: 20px;
+            font-size: 24px;
             color: #333; /* Changed label color */
         }
 
         .input-group input {
-            width: 100%;
+            width: 98%;
             padding: 8px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 10px;
+            height: 30px;
         }
 
         .btn-group {
             text-align: center;
+            font-size: 22px;
         }
 
         .btn-group button, .btn-group a {
@@ -64,20 +69,20 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 22px;
         }
 
         .btn-group button {
-            background-color: #ff6347; /* Changed sign up button color */
+            background-color: #4682b4; /* Changed login button color */
             color: #fff;
             margin-right: 10px;
         }
 
         .btn-group a {
-            background-color: #4682b4; /* Changed login button color */
+            background-color: #ff6347; /* Changed sign up button color */
             color: #fff;
             text-decoration: none;
         }
-
     </style>
 </head>
 <body>
@@ -94,9 +99,9 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <div class="btn-group">
-                
                 <a href="dashboard.html">Login</a>
                 <a href="sign up.html">Sign Up</a>
+              
             </div>
         </form>
     </div>
