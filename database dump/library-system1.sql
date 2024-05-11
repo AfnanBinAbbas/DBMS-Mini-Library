@@ -109,7 +109,7 @@
 
 -- -- --------------------------------------------------------
 
--- -- Table structure for table rack
+-- -- Table structure for table rack -- --
 
 -- CREATE TABLE rack (
 --   rackid SERIAL PRIMARY KEY,
@@ -117,7 +117,7 @@
 --   status VARCHAR(10) NOT NULL DEFAULT 'Enable'
 -- );
 
--- -- Dumping data for table rack
+-- -- Dumping data for table rack -- --
 
 -- INSERT INTO rack (name, status) VALUES
 -- ('R1', 'Enable'),
