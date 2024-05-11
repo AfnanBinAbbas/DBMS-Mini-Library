@@ -160,3 +160,8 @@
 --     RETURN NULL;
 -- END;
 -- $$ LANGUAGE plpgsql;
+
+-- CREATE TRIGGER update_no_of_copy_trigger -- 
+-- AFTER INSERT OR DELETE ON issued_book
+-- FOR EACH ROW
+-- EXECUTE FUNCTION update_no_of_copy();
