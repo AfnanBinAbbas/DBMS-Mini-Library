@@ -143,3 +143,42 @@ def migrate_categories():
 
 # Execute category migration
 migrate_categories()
+def migrate_issued_books():
+    try:
+        # Connect to PostgreSQL
+        conn = psycopg2.connect(**pg_connection_params)
+        cursor = conn.cursor()
+
+        # Fetch data from PostgreSQL table
+        cursor.execute("SELECT * FROM issued_book")
+        records = cursor.fetchall()
+
+        # Firestore collection reference for issued books
+        collection_ref = db.collection('issued_books')
+
+        # Upload data to Firestore
+        for record in records:
+            data = {
+                'issuebookid': record[0],
+                'bookid': record[1],
+                'userid': record[2],
+                'issue_date_time': record[3].isoformat(),  # Convert timestamp to ISO format
+                'expected_return_date': record[4].isoformat(),  # Convert timestamp to ISO format
+                'return_date_time': record[5].isoformat(),  # Convert timestamp to ISO format
+                'status': record[6]
+            }
+            # Add document to Firestore collection
+            collection_ref.add(data)
+
+        print("Issued book migration completed successfully.")
+
+    except Exception as e:
+        print("Error:", e)
+
+    finally:
+        # Close PostgreSQL connection
+        cursor.close()
+        conn.close()
+
+# Execute issued book migration
+migrate_issued_books()
