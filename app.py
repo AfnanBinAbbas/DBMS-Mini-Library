@@ -5,7 +5,7 @@ import psycopg2.extras
 import firebase_admin
 from firebase_admin import credentials
 
-cred = credentials.Certificate("serviceAccountKey.json")
+cred = credentials.Certificate(r"C:\Local Disk E\Github\serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 
 # Connect to PostgreSQL database
@@ -49,36 +49,36 @@ def login():
             message = 'Please enter correct email/password!'
     return render_template('login.html', message=message)
 
-
-@app.route("/dashboard", methods=['GET', 'POST'])
+@app.route("/dashboard")
 def dashboard():
-    if 'loggedin' in session:        
-        return render_template("dashboard.html")
-    return redirect(url_for('login'))    
-    
-@app.route("/users", methods=['GET', 'POST'])
-def users():
     if 'loggedin' in session:
-        # Connect to the PostgreSQL database
-        conn = psycopg2.connect(
+        return render_template("dashboard.html")
+    return redirect(url_for('login'))
+
+def get_db_connection():
+    return psycopg2.connect(
         host="localhost",
         dbname="lms",
         user="postgres",
         password="pgadmin4",
         port=5432
-        )
-        # Create a cursor from the connection
-        cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        # Execute the SQL query to fetch users
-        cursor.execute('SELECT * FROM "user"')
-        # Fetch all the users
-        users = cursor.fetchall()    
-        # Close the cursor and connection
-        cursor.close()
-        conn.close()
-        # Pass the fetched users to the template
-        return render_template("users.html", users=users)
-    # Redirect to the login page if user is not logged in
+    )
+
+@app.route("/users")
+def users():
+    if 'loggedin' in session:
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+            cursor.execute('SELECT * FROM "user"')
+            users = cursor.fetchall()
+            cursor.close()
+            conn.close()
+            return render_template("users.html", users=users)
+        except psycopg2.Error as e:
+            # Handle database errors
+            error_message = f"Database error: {e}"
+            return render_template("error.html", error_message=error_message)
     return redirect(url_for('login'))
 
 def users():
@@ -163,13 +163,13 @@ def password_change():
         return render_template("password_change.html", mesage = mesage, changePassUserId = changePassUserId)
     return redirect(url_for('login'))   
     
-@app.route("/delete_user", methods =['GET'])
+@app.route("/delete_user", methods=['GET'])
 def delete_user():
     if 'loggedin' in session:
         deleteUserId = request.args.get('userid')
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cursor.execute('DELETE FROM user WHERE userid = % s', (deleteUserId, ))
-        psycopg2.connection.commit()   
+        cursor.execute('DELETE FROM "user" WHERE userid = %s', (deleteUserId,))
+        conn.commit()
         return redirect(url_for('users'))
     return redirect(url_for('login'))
   
@@ -249,9 +249,9 @@ def books():
         return render_template("books.html", books = books, authors = authors, publishers = publishers, categories = categories, racks  = racks)
     return redirect(url_for('login'))
     
-@app.route("/edit_book", methods =['GET', 'POST'])
+@app.route("/edit_book", methods=['GET', 'POST'])
 def edit_book():
-    msg = ''    
+    msg = ''
     if 'loggedin' in session:
         # Connect to the PostgreSQL database
         conn = psycopg2.connect(
@@ -261,14 +261,14 @@ def edit_book():
             password="pgadmin4",
             port=5432
         )
-        
+
         editBookId = request.args.get('bookid')
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cursor.execute('SELECT book.bookid, book.picture, book.name, book.status, book.isbn, book.no_of_copy, book.updated_on, book.authorid, book.categoryid, book.rackid, book.publisherid, author.name as author_name, category.name AS category_name, rack.name As rack_name, publisher.name AS publisher_name FROM book LEFT JOIN author ON author.authorid = book.authorid LEFT JOIN category ON category.categoryid = book.categoryid LEFT JOIN rack ON rack.rackid = book.rackid LEFT JOIN publisher ON publisher.publisherid = book.publisherid WHERE book.bookid = %s', (editBookId, ))
+        cursor.execute('SELECT book.bookid, book.picture, book.name, book.status, book.isbn, book.no_of_copy, book.updated_on, book.authorid, book.categoryid, book.rackid, book.publisherid, author.name as author_name, category.name AS category_name, rack.name As rack_name, publisher.name AS publisher_name FROM book LEFT JOIN author ON author.authorid = book.authorid LEFT JOIN category ON category.categoryid = book.categoryid LEFT JOIN rack ON rack.rackid = book.rackid LEFT JOIN publisher ON publisher.publisherid = book.publisherid WHERE book.bookid = %s', (editBookId,))
         books = cursor.fetchall()
 
         cursor.execute("SELECT authorid, name FROM author")
-        authors = cursor.fetchall()  
+        authors = cursor.fetchall()
 
         cursor.execute("SELECT publisherid, name FROM publisher")
         publishers = cursor.fetchall()
@@ -283,7 +283,7 @@ def edit_book():
         conn.close()  # Close the connection
 
         return render_template("edit_books.html", books=books, authors=authors, publishers=publishers, categories=categories, racks=racks)
-    
+
     return redirect(url_for('login'))
 
 @app.route("/save_book", methods =['GET', 'POST'])
@@ -556,7 +556,7 @@ def author():
         return render_template("author.html", authors = authors)
     return redirect(url_for('login'))
 
-@app.route("/saveAuthor", methods =['GET', 'POST'])
+@app.route("/saveAuthor", methods=['GET', 'POST'])
 def saveAuthor():
     if 'loggedin' in session:
         # Connect to the PostgreSQL database
@@ -566,27 +566,28 @@ def saveAuthor():
             user="postgres",
             password="pgadmin4",
             port=5432
-        )  
+        )
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        
+
         if request.method == 'POST' and 'name' in request.form and 'status' in request.form:
-            name = request.form['name'] 
-            status = request.form['status']             
-            action = request.form['action']             
-            
+            name = request.form['name']
+            status = request.form['status']
+            action = request.form['action']
+
             if action == 'updateAuthor':
-                authorId = request.form['authorid'] 
-                cursor.execute('UPDATE author SET name = %s, status = %s WHERE authorid =% s', (name, status, (authorId, ), ))
-                psycopg2.connection.commit()        
-            else: 
-                cursor.execute('INSERT INTO author (`name`, `status`) VALUES (%s, %s)', (name, status))
-                psycopg2.connection.commit()        
-            return redirect(url_for('author'))        
+                authorId = request.form['authorid']
+                cursor.execute('UPDATE author SET name = %s, status = %s WHERE authorid = %s', (name, status, authorId,))
+                conn.commit()
+            else:
+                cursor.execute('INSERT INTO author (name, status) VALUES (%s, %s)', (name, status))
+                conn.commit()
+            return redirect(url_for('author'))
         elif request.method == 'POST':
-            msg = 'Please fill out the form !'        
+            msg = 'Please fill out the form !'
         return redirect(url_for('author'))
-    
+
     return redirect(url_for('login'))
+
     
 @app.route("/editAuthor", methods =['GET', 'POST'])
 def editAuthor():
