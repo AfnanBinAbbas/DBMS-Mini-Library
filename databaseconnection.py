@@ -8,7 +8,7 @@ db = firestore.Client()
 
 # Function to retrieve authors from Firestore
 def get_authors():
-    authors_ref = db.collection('postgress_data')
+    authors_ref = db.collection('Authors')
     return authors_ref.get()
 
 # PostgreSQL connection parameters
@@ -21,7 +21,7 @@ pg_connection_params = {
 }
 
 # Firestore collection reference
-collection_ref = db.collection('postgress_data')
+collection_ref = db.collection('Authors')
 
 # Function to fetch data from PostgreSQL and upload to Firestore
 def sync_data():
