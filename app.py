@@ -77,8 +77,6 @@ def users(): #user function
             return render_template("error.html", error_message=error_message)
     return redirect(url_for('login'))
 
-# def users():
-
 @app.route("/save_user", methods =['GET', 'POST'])
 def save_user(): #save user function
     msg = ''    
