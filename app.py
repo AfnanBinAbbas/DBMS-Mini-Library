@@ -618,7 +618,6 @@ def delete_author():
     return redirect(url_for('login'))
 
 
-# Manage publishers   
 @app.route("/publisher", methods =['GET', 'POST'])
 def publisher():
     if 'loggedin' in session:
