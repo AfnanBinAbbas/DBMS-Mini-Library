@@ -47,7 +47,7 @@
 
 -- -- --------------------------------------------------------
 
--- -- Table structure for table category
+-- -- Table structure for table category -- --
 
 -- CREATE TABLE category (
 --   categoryid SERIAL PRIMARY KEY,
@@ -55,7 +55,7 @@
 --   status VARCHAR(10) NOT NULL
 -- );
 
--- -- Dumping data for table category
+-- -- Dumping data for table category -- --
 
 -- INSERT INTO category (name, status) VALUES
 -- ('Web Design', 'Enable'),
