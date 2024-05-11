@@ -81,13 +81,13 @@ def users():
             return render_template("error.html", error_message=error_message)
     return redirect(url_for('login'))
 
-def users():
-    if 'loggedin' in session:
-        cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cursor.execute('SELECT * FROM user')
-        users = cursor.fetchall()    
-        return render_template("users.html", users=users)
-    return redirect(url_for('login'))
+# def users():
+#     if 'loggedin' in session:
+#         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+#         cursor.execute('SELECT * FROM user')
+#         users = cursor.fetchall()    
+#         return render_template("users.html", users=users)
+#     return redirect(url_for('login'))
 
 @app.route("/save_user", methods =['GET', 'POST'])
 def save_user():
@@ -104,7 +104,7 @@ def save_user():
             
             if action == 'updateUser':
                 userId = request.form['userid']                 
-                cursor.execute('UPDATE user SET first_name= %s, last_name= %s, email= %s, role= %s WHERE id = %s', (first_name, last_name, email, role, (userId, ), ))
+                cursor.execute('UPDATE "user" SET first_name= %s, last_name= %s, email= %s, role= %s WHERE id = %s', (first_name, last_name, email, role, (userId, ), ))
                 conn.commit()        
             else:
                 password = request.form['password'] 
@@ -117,50 +117,61 @@ def save_user():
         return redirect(url_for('users'))      
     return redirect(url_for('login'))
 
-@app.route("/edit_user", methods =['GET', 'POST'])
+@app.route("/edit_user", methods=['GET', 'POST'])
 def edit_user():
     msg = ''    
     if 'loggedin' in session:
         editUserId = request.args.get('userid')
-        cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cursor.execute('SELECT * FROM user WHERE id = %s', (editUserId, ))
-        users = cursor.fetchall()         
-
-        return render_template("edit_user.html", users = users)
+        
+        # Check if editUserId is not empty
+        if editUserId:
+            cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+            
+            # Use try-except block to handle potential errors
+            try:
+                # Execute the SQL query safely
+                cursor.execute('SELECT * FROM "user" WHERE id = %s', (editUserId, ))
+                users = cursor.fetchall()
+                return render_template("edit_user.html", users=users)
+            except psycopg2.Error as e:
+                # Handle any database errors
+                msg = f"Database error: {e}"
+        else:
+            msg = "User ID not provided"
+        
     return redirect(url_for('login'))
 
-    
-@app.route("/view_user", methods =['GET', 'POST'])
+@app.route("/view_user", methods=['GET', 'POST'])
 def view_user():
     if 'loggedin' in session:
         viewUserId = request.args.get('userid')   
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cursor.execute('SELECT * FROM user WHERE id = %s', (viewUserId, ))
+        cursor.execute('SELECT * FROM "user" WHERE id = %s', (viewUserId,))
         user = cursor.fetchone()   
-        return render_template("view_user.html", user = user)
+        return render_template("view_user.html", user=user)
     return redirect(url_for('login'))
     
-@app.route("/password_change", methods =['GET', 'POST'])
+@app.route("/password_change", methods=['GET', 'POST'])
 def password_change():
-    mesage = ''
+    message = ''  # Corrected the variable name
     if 'loggedin' in session:
         changePassUserId = request.args.get('userid')        
-        if request.method == 'POST' and 'password' in request.form and 'confirm_pass' in request.form and 'userid' in request.form  :
+        if request.method == 'POST' and 'password' in request.form and 'confirm_pass' in request.form and 'userid' in request.form:
             password = request.form['password']   
             confirm_pass = request.form['confirm_pass'] 
             userId = request.form['userid']
             if not password or not confirm_pass:
-                mesage = 'Please fill out the form !'
+                message = 'Please fill out the form !'  # Corrected the variable name
             elif password != confirm_pass:
-                mesage = 'Confirm password is not equal!'
+                message = 'Confirm password is not equal!'
             else:
                 cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-                cursor.execute('UPDATE user SET  password =%s WHERE id =%s', (password, (userId, ), ))
+                cursor.execute('UPDATE "user" SET  password = %s WHERE id = %s', (password, userId,))
                 conn.commit()        
-                mesage = 'Password updated !'            
+                message = 'Password updated !'  # Corrected the variable name            
         elif request.method == 'POST':
-            mesage = 'Please fill out the form !'        
-        return render_template("password_change.html", mesage = mesage, changePassUserId = changePassUserId)
+            message = 'Please fill out the form !'  # Corrected the variable name
+        return render_template("password_change.html", message=message, changePassUserId=changePassUserId)
     return redirect(url_for('login'))   
     
 @app.route("/delete_user", methods=['GET'])
@@ -168,7 +179,7 @@ def delete_user():
     if 'loggedin' in session:
         deleteUserId = request.args.get('userid')
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cursor.execute('DELETE FROM "user" WHERE userid = %s', (deleteUserId,))
+        cursor.execute('DELETE FROM "user" WHERE id = %s', (deleteUserId,))
         conn.commit()
         return redirect(url_for('users'))
     return redirect(url_for('login'))
