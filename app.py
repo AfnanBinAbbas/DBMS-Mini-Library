@@ -4,7 +4,6 @@ import re
 import psycopg2.extras
 import firebase_admin
 from firebase_admin import credentials
-
 cred = credentials.Certificate(r"C:\Local Disk E\Github\serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 
@@ -175,10 +174,7 @@ def logout():
     session.pop('email', None)
     return redirect(url_for('login'))
   
-from flask import Flask, render_template, request, redirect, url_for, session
-import psycopg2
-import re
-import psycopg2.extras
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
