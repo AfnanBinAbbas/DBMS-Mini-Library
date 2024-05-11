@@ -658,7 +658,7 @@ def savePublisher():
             if 'publisherid' in request.form and request.form['publisherid']:
                 publisherid = request.form['publisherid'] 
             else:
-                publisherid = None  # Set publisherid to None if it's not present or empty
+                publisherid = None
                 
             if action == 'updatePublisher' and publisherid:
                 cursor.execute('UPDATE publisher SET name = %s, status = %s WHERE publisherid = %s', (name, status, publisherid))
