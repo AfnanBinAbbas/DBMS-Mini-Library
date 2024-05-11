@@ -714,7 +714,6 @@ def delete_publisher():
 @app.route("/rack", methods =['GET', 'POST'])
 def rack():
     if 'loggedin' in session:
-        # Connect to the PostgreSQL database
         conn = psycopg2.connect(
             host="localhost",
             dbname="lms",
