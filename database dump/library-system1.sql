@@ -10,7 +10,7 @@
 --   status VARCHAR(10) NOT NULL
 -- );
 
--- -- Dumping data for table author
+-- -- Dumping data for table author -- --
 
 -- INSERT INTO author (name, status) VALUES
 -- ('Alan Forbes', 'Enable'),
@@ -18,7 +18,7 @@
 
 -- -- --------------------------------------------------------
 
--- -- Table structure for table book
+-- -- Table structure for table book -- --
 
 -- CREATE TABLE book (
 --   bookid SERIAL PRIMARY KEY,
