@@ -10,21 +10,21 @@
 <body>
   <nav>
     <div class="nav__container">
-      <img src="/static/assets/logo.png" alt="" class="logo__img" />
-      <ul class="nav__links">
-    </div>
-
-    <!-- <div class="container-fluid" id="main">
-    {% include 'top_menus.html' %} -->
-
-    <div class="row row-offcanvas row-offcanvas-left">
-      {% include 'left_menus.html' %}
-      <div class="col-md-9 col-lg-10 main">
-        <h2>Dashboard</h2>
-        <hr>
-      </div>
+      <a href="{{url_for('dashboard')}}">
+        <img src="/static/assets/logo.png" alt="" class="logo__img" />
+      </a>
     </div>
   </nav>
+  <!-- <div class="container-fluid" id="main">
+    {% include 'top_menus.html' %} -->
+
+  <div class="row row-offcanvas row-offcanvas-left">
+    {% include 'left_menus.html' %}
+    <div class="col-md-9 col-lg-10 main">
+      <h2>Dashboard</h2>
+      <hr>
+    </div>
+  </div>
 </body>
 
 </html>
